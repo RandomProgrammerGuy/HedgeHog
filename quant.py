@@ -75,3 +75,12 @@ def assets_to_equity(balance_sheet : dict):
         return -1
     
     return int(balance_sheet["quarterlyReports"][0]["totalAssets"]) / int(balance_sheet["quarterlyReports"][0]["totalShareholderEquity"])
+
+def debt_to_ebitda(balance_sheet : dict, income_statement : dict):
+    """Calculates the Total Debt-to-EBITDA ratio of a company whose balance sheet is 
+    passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
+
+    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or income_statement["annualReports"][0]["ebitda"] == "None" or income_statement["annualReports"][0]["ebitda"] == 0:
+            return -1
+    
+    return int(balance_sheet["annualReports"][0]["totalLiabilities"]) / int(income_statement["annualReports"][0]["ebitda"])
