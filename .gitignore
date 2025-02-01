@@ -172,3 +172,4 @@ cython_debug/
 
 # User
 portfolio.txt
+apikeys.py
