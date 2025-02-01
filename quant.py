@@ -12,13 +12,39 @@ def print_json(data : dict):
     """Prints JSON data in a more presentable way. Mainly used for Debugging."""
     print(json.dumps(data, indent=4))
 
-def get_income_statement(ticker : str, av_api_key : str):
-    """Retrieves the financial statement of ticker. ticker has to be of type 
-       string. Method requires an AlphaVantage API key as an argument."""
-    
-    
-    url = f"https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol={ticker}&apikey={av_api_key}"
-    url_req_response = requests.get(url)
+def alphavantage_api_request(ticker : str, function : str, av_api_key : str):
+    """Auxiliary function that allows for easier AlphaVantage API calls"""
+    return requests.get(f"https://www.alphavantage.co/query?function={function}&symbol={ticker}&apikey={av_api_key}")
 
-    parsed_json = url_req_response.json()
-    print_json(parsed_json)
+def get_income_statement(ticker : str, av_api_key : str):
+    """Retrieves the financial statement of a ticker. ticker has to be of type 
+       string. Function requires an AlphaVantage API key as an argument."""
+    
+    api_req_response = alphavantage_api_request(ticker, 'INCOME_STATEMENT', av_api_key)
+    parsed_json = api_req_response.json()
+    return parsed_json
+
+def get_balance_sheet(ticker : str, av_api_key : str):
+    """Retrieves the balance sheet of a ticker. ticker has to be of type string.
+       Function requires an AlphaVantage API key as an argument"""
+    
+    api_req_response = alphavantage_api_request(ticker, 'BALANCE_SHEET', av_api_key)
+    parsed_json = api_req_response.json()
+    return parsed_json
+
+def get_cash_flow(ticker : str, av_api_key : str):
+    """Retrieves the cash flow of a ticker. ticker has to be of type string.
+    Function requires an AlphaVantage API key as an argument"""
+    
+    api_req_response = alphavantage_api_request(ticker, 'CASH_FLOW', av_api_key)
+    parsed_json = api_req_response.json()
+    return parsed_json
+
+
+def get_earnings(ticker : str, av_api_key : str):
+    """Retrieves the cash earnings of a ticker. ticker has to be of type string.
+    Function requires an AlphaVantage API key as an argument"""
+    
+    api_req_response = alphavantage_api_request(ticker, 'EARNINGS', av_api_key)
+    parsed_json = api_req_response.json()
+    return parsed_json
