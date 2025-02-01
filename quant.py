@@ -48,3 +48,12 @@ def get_earnings(ticker : str, av_api_key : str):
     api_req_response = alphavantage_api_request(ticker, 'EARNINGS', av_api_key)
     parsed_json = api_req_response.json()
     return parsed_json
+
+def debt_to_equity(balance_sheet : dict):
+    """Calculates the Debt-to-Equity ratio of a company whose balance sheet is 
+       passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
+    
+    if balance_sheet["quarterlyReports"][0]["totalLiabilities"] == "None" or balance_sheet["quarterlyReports"][0]["totalShareholderEquity"] == "None" or balance_sheet["quarterlyReports"][0]["totalShareholderEquity"] == 0:
+        return -1
+    
+    return int(balance_sheet["quarterlyReports"][0]["totalLiabilities"]) / int(balance_sheet["quarterlyReports"][0]["totalShareholderEquity"])
