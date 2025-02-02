@@ -107,7 +107,42 @@ def current_ratio(balance_sheet : dict):
     
     return int(balance_sheet["annualReports"][0]["totalCurrentAssets"]) / int(balance_sheet["annualReports"][0]["totalCurrentLiabilities"])
 
-def ten_year_operating_expenses_growth(income_statement : dict):
+def ten_yr_operating_expenses_growth(income_statement : dict):
     """Calculates the 10yr op. expenses growth of a company whose income statement is 
     passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
+    if income_statement["annualReports"][0]["operatingExpenses"] == "None" or income_statement["annualReports"][9]["operatingExpenses"] == "None" or income_statement["annualReports"][9]["operatingExpenses"] == "0":
+        return -1
+    
+    return ((int(income_statement["annualReports"][0]["operatingExpenses"]) - int(income_statement["annualReports"][9]["operatingExpenses"]))/(int(income_statement["annualReports"][9]["operatingExpenses"]))) * 100
 
+def ten_yr_assets_growth(balance_sheet : dict):
+    """Calculates the 10yr assets growth of a company whose balance sheet is 
+    passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
+    if balance_sheet["annualReports"][0]["totalAssets"] == "None" or balance_sheet["annualReports"][9]["totalAssets"] == "None" or balance_sheet["annualReports"][9]["totalAssets"] == "0":
+        return -1
+    
+    return ((int(balance_sheet["annualReports"][0]["totalAssets"]) - int(balance_sheet["annualReports"][9]["totalAssets"]))/(int(balance_sheet["annualReports"][9]["totalAssets"]))) * 100
+
+def ten_yr_liabilities_growth(balance_sheet : dict):
+    """Calculates the 10yr liabilities growth of a company whose balance sheet is 
+    passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
+    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][9]["totalLiabilities"] == "None" or balance_sheet["annualReports"][9]["totalLiabilities"] == "0":
+        return -1
+    
+    return ((int(balance_sheet["annualReports"][0]["totalLiabilities"]) - int(balance_sheet["annualReports"][9]["totalLiabilities"]))/(int(balance_sheet["annualReports"][9]["totalLiabilities"]))) * 100
+
+def ten_yr_cash_flow_growth(cash_flow_report : dict):
+    """Calculates the 10yr liabilities growth of a company whose cash flow report is 
+    passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
+    if cash_flow_report["annualReports"][0]["operatingCashflow"] == "None" or cash_flow_report["annualReports"][9]["operatingCashflow"] == "None" or cash_flow_report["annualReports"][9]["operatingCashflow"] == "0":
+        return -1
+    
+    return ((int(cash_flow_report["annualReports"][0]["operatingCashflow"]) - int(cash_flow_report["annualReports"][9]["operatingCashflow"]))/(int(cash_flow_report["annualReports"][9]["operatingCashflow"]))) * 100
+
+def ten_yr_share_count_growth(balance_sheet : dict):
+    """Calculates the 10yr share count growth of a company whose balance sheet is 
+    passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
+    if balance_sheet["annualReports"][0]["commonStock"] == "None" or balance_sheet["annualReports"][9]["commonStock"] == "None" or balance_sheet["annualReports"][9]["commonStock"] == "0":
+        return -1
+    
+    return ((int(balance_sheet["annualReports"][0]["commonStock"]) - int(balance_sheet["annualReports"][9]["commonStock"]))/(int(balance_sheet["annualReports"][9]["commonStock"]))) * 100
