@@ -53,34 +53,52 @@ def liabilities_to_equity(balance_sheet : dict):
     """Calculates the Libailities-to-Equity ratio of a company whose balance sheet is 
        passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
     
-    if balance_sheet["quarterlyReports"][0]["totalLiabilities"] == "None" or balance_sheet["quarterlyReports"][0]["totalShareholderEquity"] == "None" or balance_sheet["quarterlyReports"][0]["totalShareholderEquity"] == 0:
+    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "0":
         return -1
     
-    return int(balance_sheet["quarterlyReports"][0]["totalLiabilities"]) / int(balance_sheet["quarterlyReports"][0]["totalShareholderEquity"])
+    return int(balance_sheet["annualReports"][0]["totalLiabilities"]) / int(balance_sheet["annualReports"][0]["totalShareholderEquity"])
 
 def liabilities_to_capital(balance_sheet : dict):
     """Calculates the Liabilities-to-Capital ratio of a company whose balance sheet is 
        passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
     
-    if balance_sheet["quarterlyReports"][0]["totalLiabilities"] == "None" or balance_sheet["quarterlyReports"][0]["totalShareholderEquity"] == "None" or int(balance_sheet["quarterlyReports"][0]["totalLiabilities"]) + int(balance_sheet["quarterlyReports"][0]["totalShareholderEquity"]) == 0:
+    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "None" or int(balance_sheet["annualReports"][0]["totalLiabilities"]) + int(balance_sheet["annualReports"][0]["totalShareholderEquity"]) == "0":
         return -1
     
-    return int(balance_sheet["quarterlyReports"][0]["totalLiabilities"]) / (int(balance_sheet["quarterlyReports"][0]["totalLiabilities"]) + int(balance_sheet["quarterlyReports"][0]["totalShareholderEquity"]))
+    return int(balance_sheet["annualReports"][0]["totalLiabilities"]) / (int(balance_sheet["annualReports"][0]["totalLiabilities"]) + int(balance_sheet["annualReports"][0]["totalShareholderEquity"]))
 
 def assets_to_equity(balance_sheet : dict):
     """Calculates the Total Assets-to-Equity ratio of a company whose balance sheet is 
        passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
     
-    if balance_sheet["quarterlyReports"][0]["totalAssets"] == "None" or balance_sheet["quarterlyReports"][0]["totalShareholderEquity"] == "None" or balance_sheet["quarterlyReports"][0]["totalShareholderEquity"] == 0:
+    if balance_sheet["annualReports"][0]["totalAssets"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "0":
         return -1
     
-    return int(balance_sheet["quarterlyReports"][0]["totalAssets"]) / int(balance_sheet["quarterlyReports"][0]["totalShareholderEquity"])
+    return int(balance_sheet["annualReports"][0]["totalAssets"]) / int(balance_sheet["annualReports"][0]["totalShareholderEquity"])
 
 def debt_to_ebitda(balance_sheet : dict, income_statement : dict):
     """Calculates the Total Debt-to-EBITDA ratio of a company whose balance sheet is 
     passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
 
-    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or income_statement["annualReports"][0]["ebitda"] == "None" or income_statement["annualReports"][0]["ebitda"] == 0:
+    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or income_statement["annualReports"][0]["ebitda"] == "None" or income_statement["annualReports"][0]["ebitda"] == "0":
             return -1
     
     return int(balance_sheet["annualReports"][0]["totalLiabilities"]) / int(income_statement["annualReports"][0]["ebitda"])
+
+def quick_ratio(balance_sheet : dict):
+    cash_plus_ce = balance_sheet["annualReports"][0]["cashAndCashEquivalentsAtCarryingValue"]
+    ms = balance_sheet["annualReports"][0]["totalCurrentAssets"]
+    nar = balance_sheet["annualReports"][0]["currentNetReceivables"]
+    current_liabilities = balance_sheet["annualReports"][0]["totalCurrentLiabilities"]
+    
+    if cash_plus_ce == "None" or ms == "None" or nar == "None" or current_liabilities == "None" or current_liabilities == "0":
+        return -1
+    
+    return (int(cash_plus_ce) + int(ms) + int(nar))/(int(current_liabilities))
+
+
+def current_ratio(balance_sheet : dict):
+    if balance_sheet["annualReports"][0]["totalCurrentAssets"] == "None" or balance_sheet["annualReports"][0]["totalCurrentLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalCurrentLiabilities"] == "0":
+        return -1
+    
+    return int(balance_sheet["annualReports"][0]["totalCurrentAssets"]) / int(balance_sheet["annualReports"][0]["totalCurrentLiabilities"])
