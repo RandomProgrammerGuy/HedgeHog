@@ -86,6 +86,8 @@ def debt_to_ebitda(balance_sheet : dict, income_statement : dict):
     return int(balance_sheet["annualReports"][0]["totalLiabilities"]) / int(income_statement["annualReports"][0]["ebitda"])
 
 def quick_ratio(balance_sheet : dict):
+    """Calculates the quick ratio of a company whose balance sheet is 
+    passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
     cash_plus_ce = balance_sheet["annualReports"][0]["cashAndCashEquivalentsAtCarryingValue"]
     ms = balance_sheet["annualReports"][0]["totalCurrentAssets"]
     nar = balance_sheet["annualReports"][0]["currentNetReceivables"]
@@ -98,7 +100,14 @@ def quick_ratio(balance_sheet : dict):
 
 
 def current_ratio(balance_sheet : dict):
+    """Calculates the current ratio of a company whose balance sheet is 
+    passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
     if balance_sheet["annualReports"][0]["totalCurrentAssets"] == "None" or balance_sheet["annualReports"][0]["totalCurrentLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalCurrentLiabilities"] == "0":
         return -1
     
     return int(balance_sheet["annualReports"][0]["totalCurrentAssets"]) / int(balance_sheet["annualReports"][0]["totalCurrentLiabilities"])
+
+def ten_year_operating_expenses_growth(income_statement : dict):
+    """Calculates the 10yr op. expenses growth of a company whose income statement is 
+    passed as a dictionary-type argument. Returns -1 if it fails to calculate"""
+
