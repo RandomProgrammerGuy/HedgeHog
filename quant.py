@@ -19,6 +19,7 @@ def alphavantage_api_request(ticker : str, function : str, av_api_key : str):
     return req_rep
 
 def check_api_limit_reached(param : dict) :
+    """Checks if the AlphaVantage API call limit is reached when the API is called"""
     if param == {'Information': 'Thank you for using Alpha Vantage! Our standard API rate limit is 25 requests per day. Please subscribe to any of the premium plans at https://www.alphavantage.co/premium/ to instantly remove all daily rate limits.'} :
         raise ConnectionRefusedError("ALPHA VANTAGE API REQUEST LIMIT REACHED. TRY AGAIN LATER OR CHANGE THE API KEY IN apikeys.py")
     
