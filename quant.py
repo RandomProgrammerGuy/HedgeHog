@@ -16,11 +16,17 @@ def alphavantage_api_request(ticker : str, function : str, av_api_key : str):
     """Auxiliary function that allows for easier AlphaVantage API calls"""
     return requests.get(f"https://www.alphavantage.co/query?function={function}&symbol={ticker}&apikey={av_api_key}")
 
+def check_api_limit_reached(param : dict) :
+    if param == {'Information': 'Thank you for using Alpha Vantage! Our standard API rate limit is 25 requests per day. Please subscribe to any of the premium plans at https://www.alphavantage.co/premium/ to instantly remove all daily rate limits.'} :
+        raise ConnectionRefusedError("ALPHA VANTAGE API REQUEST LIMIT REACHED. TRY AGAIN LATER OR CHANGE THE API KEY IN apikeys.py")
+    
+
 def get_income_statement(ticker : str, av_api_key : str):
     """Retrieves the financial statement of a ticker. ticker has to be of type 
        string. Function requires an AlphaVantage API key as an argument."""
     
     api_req_response = alphavantage_api_request(ticker, 'INCOME_STATEMENT', av_api_key)
+    check_api_limit_reached(api_req_response)
     parsed_json = api_req_response.json()
     return parsed_json
 
@@ -29,6 +35,7 @@ def get_balance_sheet(ticker : str, av_api_key : str):
        Function requires an AlphaVantage API key as an argument"""
     
     api_req_response = alphavantage_api_request(ticker, 'BALANCE_SHEET', av_api_key)
+    check_api_limit_reached(api_req_response)
     parsed_json = api_req_response.json()
     return parsed_json
 
@@ -37,6 +44,7 @@ def get_cash_flow(ticker : str, av_api_key : str):
     Function requires an AlphaVantage API key as an argument"""
     
     api_req_response = alphavantage_api_request(ticker, 'CASH_FLOW', av_api_key)
+    check_api_limit_reached(api_req_response)
     parsed_json = api_req_response.json()
     return parsed_json
 
@@ -46,6 +54,7 @@ def get_earnings(ticker : str, av_api_key : str):
     Function requires an AlphaVantage API key as an argument"""
     
     api_req_response = alphavantage_api_request(ticker, 'EARNINGS', av_api_key)
+    check_api_limit_reached(api_req_response)
     parsed_json = api_req_response.json()
     return parsed_json
 
