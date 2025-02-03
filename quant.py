@@ -160,6 +160,7 @@ print(f"      Liabilities-to-Capital Ratio : {liabilities_to_capital(b_sheet):.3
 print(f"            Assets-to-Equity Ratio : {assets_to_equity(b_sheet):.3f}%")
 print(f"              Debt-to-EBITDA Ratio : {debt_to_ebitda(b_sheet, income_s):.3f}%")
 print(f"                       Quick Ratio : {quick_ratio(b_sheet):.3f}%")
+print(f"                     Current Ratio : {current_ratio(b_sheet):.3f}%")
 print(f"Ten-Year Operating Expenses Growth : {ten_yr_operating_expenses_growth(income_s):.3f}%")
 print(f"       Ten-Year Liabilities Growth : {ten_yr_liabilities_growth(b_sheet):.3f}%")
 print(f"            Ten-Year Assets Growth : {ten_yr_assets_growth(b_sheet):.3f}%")
