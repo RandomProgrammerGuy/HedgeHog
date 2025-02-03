@@ -14,7 +14,9 @@ def print_json(data : dict):
 
 def alphavantage_api_request(ticker : str, function : str, av_api_key : str):
     """Auxiliary function that allows for easier AlphaVantage API calls"""
-    return requests.get(f"https://www.alphavantage.co/query?function={function}&symbol={ticker}&apikey={av_api_key}")
+    req_rep =  requests.get(f"https://www.alphavantage.co/query?function={function}&symbol={ticker}&apikey={av_api_key}")
+    check_api_limit_reached(req_rep)
+    return req_rep
 
 def check_api_limit_reached(param : dict) :
     if param == {'Information': 'Thank you for using Alpha Vantage! Our standard API rate limit is 25 requests per day. Please subscribe to any of the premium plans at https://www.alphavantage.co/premium/ to instantly remove all daily rate limits.'} :
@@ -62,6 +64,8 @@ def liabilities_to_equity(balance_sheet : dict):
     """Calculates the Libailities-to-Equity ratio of a company whose balance sheet is 
        passed as a dictionary-type argument. Returns False if it fails to calculate"""
     
+    check_api_limit_reached(balance_sheet)
+    
     if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "0":
         return False
     
@@ -70,6 +74,8 @@ def liabilities_to_equity(balance_sheet : dict):
 def liabilities_to_capital(balance_sheet : dict):
     """Calculates the Liabilities-to-Capital ratio of a company whose balance sheet is 
        passed as a dictionary-type argument. Returns False if it fails to calculate"""
+    
+    check_api_limit_reached(balance_sheet)
     
     if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "None" or int(balance_sheet["annualReports"][0]["totalLiabilities"]) + int(balance_sheet["annualReports"][0]["totalShareholderEquity"]) == "0":
         return False
@@ -80,6 +86,8 @@ def assets_to_equity(balance_sheet : dict):
     """Calculates the Total Assets-to-Equity ratio of a company whose balance sheet is 
        passed as a dictionary-type argument. Returns False if it fails to calculate"""
     
+    check_api_limit_reached(balance_sheet)
+    
     if balance_sheet["annualReports"][0]["totalAssets"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "0":
         return False
     
@@ -89,6 +97,9 @@ def debt_to_ebitda(balance_sheet : dict, income_statement : dict):
     """Calculates the Total Debt-to-EBITDA ratio of a company whose balance sheet is 
     passed as a dictionary-type argument. Returns False if it fails to calculate"""
 
+    check_api_limit_reached(balance_sheet)
+    check_api_limit_reached(income_statement)
+
     if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or income_statement["annualReports"][0]["ebitda"] == "None" or income_statement["annualReports"][0]["ebitda"] == "0":
             return False
     
@@ -97,6 +108,9 @@ def debt_to_ebitda(balance_sheet : dict, income_statement : dict):
 def quick_ratio(balance_sheet : dict):
     """Calculates the quick ratio of a company whose balance sheet is 
     passed as a dictionary-type argument. Returns False if it fails to calculate"""
+
+    check_api_limit_reached(balance_sheet)
+
     cash_plus_ce = balance_sheet["annualReports"][0]["cashAndCashEquivalentsAtCarryingValue"]
     ms = balance_sheet["annualReports"][0]["totalCurrentAssets"]
     nar = balance_sheet["annualReports"][0]["currentNetReceivables"]
@@ -111,6 +125,9 @@ def quick_ratio(balance_sheet : dict):
 def current_ratio(balance_sheet : dict):
     """Calculates the current ratio of a company whose balance sheet is 
     passed as a dictionary-type argument. Returns False if it fails to calculate"""
+
+    check_api_limit_reached(balance_sheet)
+    
     if balance_sheet["annualReports"][0]["totalCurrentAssets"] == "None" or balance_sheet["annualReports"][0]["totalCurrentLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalCurrentLiabilities"] == "0":
         return False
     
@@ -119,6 +136,9 @@ def current_ratio(balance_sheet : dict):
 def ten_yr_operating_expenses_growth(income_statement : dict):
     """Calculates the 10yr op. expenses growth of a company whose income statement is 
     passed as a dictionary-type argument. Returns False if it fails to calculate"""
+
+    check_api_limit_reached(income_statement)
+
     if income_statement["annualReports"][0]["operatingExpenses"] == "None" or income_statement["annualReports"][9]["operatingExpenses"] == "None" or income_statement["annualReports"][9]["operatingExpenses"] == "0":
         return False
     
@@ -127,6 +147,9 @@ def ten_yr_operating_expenses_growth(income_statement : dict):
 def ten_yr_assets_growth(balance_sheet : dict):
     """Calculates the 10yr assets growth of a company whose balance sheet is 
     passed as a dictionary-type argument. Returns False if it fails to calculate"""
+
+    check_api_limit_reached(balance_sheet)
+
     if balance_sheet["annualReports"][0]["totalAssets"] == "None" or balance_sheet["annualReports"][9]["totalAssets"] == "None" or balance_sheet["annualReports"][9]["totalAssets"] == "0":
         return False
     
@@ -135,6 +158,9 @@ def ten_yr_assets_growth(balance_sheet : dict):
 def ten_yr_liabilities_growth(balance_sheet : dict):
     """Calculates the 10yr liabilities growth of a company whose balance sheet is 
     passed as a dictionary-type argument. Returns False if it fails to calculate"""
+
+    check_api_limit_reached(balance_sheet)
+
     if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][9]["totalLiabilities"] == "None" or balance_sheet["annualReports"][9]["totalLiabilities"] == "0":
         return False
     
@@ -143,6 +169,9 @@ def ten_yr_liabilities_growth(balance_sheet : dict):
 def ten_yr_cash_flow_growth(cash_flow_report : dict):
     """Calculates the 10yr liabilities growth of a company whose cash flow report is 
     passed as a dictionary-type argument. Returns False if it fails to calculate"""
+
+    check_api_limit_reached(cash_flow_report)
+
     if cash_flow_report["annualReports"][0]["operatingCashflow"] == "None" or cash_flow_report["annualReports"][9]["operatingCashflow"] == "None" or cash_flow_report["annualReports"][9]["operatingCashflow"] == "0":
         return False
     
@@ -151,6 +180,9 @@ def ten_yr_cash_flow_growth(cash_flow_report : dict):
 def ten_yr_share_count_growth(balance_sheet : dict):
     """Calculates the 10yr share count growth of a company whose balance sheet is 
     passed as a dictionary-type argument. Returns False if it fails to calculate"""
+
+    check_api_limit_reached(balance_sheet)
+
     if balance_sheet["annualReports"][0]["commonStock"] == "None" or balance_sheet["annualReports"][9]["commonStock"] == "None" or balance_sheet["annualReports"][9]["commonStock"] == "0":
         return False
     
