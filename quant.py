@@ -70,7 +70,7 @@ def liabilities_to_equity(balance_sheet : dict):
     if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "0":
         return False
     
-    return (int(balance_sheet["annualReports"][0]["totalLiabilities"]) / int(balance_sheet["annualReports"][0]["totalShareholderEquity"])) * 100
+    return (int(balance_sheet["annualReports"][0]["totalLiabilities"]) / int(balance_sheet["annualReports"][0]["totalShareholderEquity"]))
 
 def liabilities_to_capital(balance_sheet : dict):
     """Calculates the Liabilities-to-Capital ratio of a company whose balance sheet is 
@@ -81,7 +81,7 @@ def liabilities_to_capital(balance_sheet : dict):
     if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "None" or int(balance_sheet["annualReports"][0]["totalLiabilities"]) + int(balance_sheet["annualReports"][0]["totalShareholderEquity"]) == "0":
         return False
     
-    return (int(balance_sheet["annualReports"][0]["totalLiabilities"]) / (int(balance_sheet["annualReports"][0]["totalLiabilities"]) + int(balance_sheet["annualReports"][0]["totalShareholderEquity"]))) * 100
+    return (int(balance_sheet["annualReports"][0]["totalLiabilities"]) / (int(balance_sheet["annualReports"][0]["totalLiabilities"]) + int(balance_sheet["annualReports"][0]["totalShareholderEquity"])))
 
 def assets_to_equity(balance_sheet : dict):
     """Calculates the Total Assets-to-Equity ratio of a company whose balance sheet is 
@@ -92,7 +92,7 @@ def assets_to_equity(balance_sheet : dict):
     if balance_sheet["annualReports"][0]["totalAssets"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "0":
         return False
     
-    return (int(balance_sheet["annualReports"][0]["totalAssets"]) / int(balance_sheet["annualReports"][0]["totalShareholderEquity"])) * 100
+    return (int(balance_sheet["annualReports"][0]["totalAssets"]) / int(balance_sheet["annualReports"][0]["totalShareholderEquity"]))
 
 def debt_to_ebitda(balance_sheet : dict, income_statement : dict):
     """Calculates the Total Debt-to-EBITDA ratio of a company whose balance sheet is 
@@ -104,7 +104,7 @@ def debt_to_ebitda(balance_sheet : dict, income_statement : dict):
     if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or income_statement["annualReports"][0]["ebitda"] == "None" or income_statement["annualReports"][0]["ebitda"] == "0":
             return False
     
-    return (int(balance_sheet["annualReports"][0]["totalLiabilities"]) / int(income_statement["annualReports"][0]["ebitda"])) * 100
+    return (int(balance_sheet["annualReports"][0]["totalLiabilities"]) / int(income_statement["annualReports"][0]["ebitda"]))
 
 def quick_ratio(balance_sheet : dict):
     """Calculates the quick ratio of a company whose balance sheet is 
@@ -120,7 +120,7 @@ def quick_ratio(balance_sheet : dict):
     if cash_plus_ce == "None" or ms == "None" or nar == "None" or current_liabilities == "None" or current_liabilities == "0":
         return False
     
-    return ((int(cash_plus_ce) + int(ms) + int(nar))/(int(current_liabilities)))*100
+    return ((int(cash_plus_ce) + int(ms) + int(nar))/(int(current_liabilities)))
 
 
 def current_ratio(balance_sheet : dict):
@@ -132,7 +132,7 @@ def current_ratio(balance_sheet : dict):
     if balance_sheet["annualReports"][0]["totalCurrentAssets"] == "None" or balance_sheet["annualReports"][0]["totalCurrentLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalCurrentLiabilities"] == "0":
         return False
     
-    return (int(balance_sheet["annualReports"][0]["totalCurrentAssets"]) / int(balance_sheet["annualReports"][0]["totalCurrentLiabilities"]))*100
+    return (int(balance_sheet["annualReports"][0]["totalCurrentAssets"]) / int(balance_sheet["annualReports"][0]["totalCurrentLiabilities"]))
 
 def ten_yr_operating_expenses_growth(income_statement : dict):
     """Calculates the 10yr op. expenses growth of a company whose income statement is 
@@ -190,19 +190,18 @@ def ten_yr_share_count_growth(balance_sheet : dict):
     return ((int(balance_sheet["annualReports"][0]["commonStock"]) - int(balance_sheet["annualReports"][9]["commonStock"]))/(int(balance_sheet["annualReports"][9]["commonStock"]))) * 100
 
 
-b_sheet = get_balance_sheet("NVDA", alphavantage_api_key)
-income_s = get_income_statement("NVDA", alphavantage_api_key)
-cflow = get_cash_flow("NVDA", alphavantage_api_key)
-earns = get_earnings("NVDA", alphavantage_api_key)
+b_sheet = get_balance_sheet("AAPL", alphavantage_api_key)
+income_s = get_income_statement("AAPL", alphavantage_api_key)
+cflow = get_cash_flow("AAPL", alphavantage_api_key)
 
-print("\nFUNDEMENTAL ANALYSIS                     NVDA")
+print("\nFUNDEMENTAL ANALYSIS                     AAPL")
 print("---------------------------------------------")
-print(f"       Liabilities-to-Equity Ratio : {liabilities_to_equity(b_sheet):.3f}%")
-print(f"      Liabilities-to-Capital Ratio : {liabilities_to_capital(b_sheet):.3f}%")
-print(f"            Assets-to-Equity Ratio : {assets_to_equity(b_sheet):.3f}%")
-print(f"              Debt-to-EBITDA Ratio : {debt_to_ebitda(b_sheet, income_s):.3f}%")
-print(f"                       Quick Ratio : {quick_ratio(b_sheet):.3f}%")
-print(f"                     Current Ratio : {current_ratio(b_sheet):.3f}%")
+print(f"       Liabilities-to-Equity Ratio : {liabilities_to_equity(b_sheet):.3f}")
+print(f"      Liabilities-to-Capital Ratio : {liabilities_to_capital(b_sheet):.3f}")
+print(f"            Assets-to-Equity Ratio : {assets_to_equity(b_sheet):.3f}")
+print(f"              Debt-to-EBITDA Ratio : {debt_to_ebitda(b_sheet, income_s):.3f}")
+print(f"                       Quick Ratio : {quick_ratio(b_sheet):.3f}")
+print(f"                     Current Ratio : {current_ratio(b_sheet):.3f}")
 print(f"Ten-Year Operating Expenses Growth : {ten_yr_operating_expenses_growth(income_s):.3f}%")
 print(f"       Ten-Year Liabilities Growth : {ten_yr_liabilities_growth(b_sheet):.3f}%")
 print(f"            Ten-Year Assets Growth : {ten_yr_assets_growth(b_sheet):.3f}%")
