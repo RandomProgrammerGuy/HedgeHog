@@ -1,4 +1,4 @@
-# The code in this file does the quantitative analysis part of the HedgeHog's stock 
+# The code in this file does the quantitative analysis part of HedgeHog's stock 
 # choices. This code uses the AlphaVantage API, which is free. To use it, go to the
 # AlphaVantage website (https://www.alphavantage.co) and claim an API key. Once done,
 # create a file named 'apikeys.py' and store your API key as a string in a variable
