@@ -2,6 +2,10 @@
 
 Current Version: 0.0.0 INDEV-INCOMPLETE
 
+# Important Notice
+
+HedgeHog can make bad financial decisions. I advise all users to keep a track of the investments the program chooses and to research the stocks independently, being ready to intervene if the program makes a mistake. By using HedgeHog, the user agrees to assume all responsibility in case of financial loss or damages resulting directly or indirectly from the program's use.
+
 # What is HedgeHog?
 HedgeHog is an open-source, mid-to-long-term-focused stock portfolio manager. HedgeHog's investment model is based on fundamental analysis and market sentiment. For each stock, HedgeHog analyses the company's financial filings and calculates numerous ratios :
 
@@ -67,3 +71,10 @@ Its stock list will be expanded to the entire US Stock Market. It is going to in
 HedgeHog V3 will be the first fully-autonomous version of HedgeHog. The fully active trading algorithm of V2 will now be used to make direct trades on the market when linked to a stock exchange account.
 
 Its stock list will be expanded to the entire US Stock Market. It is going to include a textual UI in the terminal.
+
+### V4 and Later
+
+Coming soon!
+
+# Who is behind HedgeHog?
+HedgeHog is developed and maintained by Parsa Farjam, a CS-Math Double Degree student at Paris-Saclay University. 
