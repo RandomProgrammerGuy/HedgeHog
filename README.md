@@ -7,12 +7,12 @@ Current Version: 0.0.0 INDEV-INCOMPLETE
 HedgeHog can make bad financial decisions. I advise all users to keep a track of the investments the program chooses and to research the stocks independently, being ready to intervene if the program makes a mistake. By using HedgeHog, the user agrees to assume all responsibility in case of financial loss or damages resulting directly or indirectly from the program's use.
 
 # What is HedgeHog?
-HedgeHog is an open-source, mid-to-long-term-focused stock portfolio manager. HedgeHog's investment model is based on fundamental analysis and market sentiment. For each stock, HedgeHog analyses the company's financial filings and calculates numerous ratios :
+HedgeHog is an open-source, mid-to-long-term-focused stock portfolio manager. HedgeHog's investment model is based on fundamental analysis and market sentiment. For each stock, HedgeHog analyses the company's financial filings and calculates numerous ratios:
 
-- Liabilities-to-Equity Ratio
-- Liabilities-to-Capital Ratio
-- Assets-to-Equity Ratio
+- Debt-to-Equity Ratio
+- Debt-to-Capital Ratio
 - Debt-to-EBITDA Ratio
+- Assets-to-Equity Ratio
 - Quick Ratio
 - Current Ratio
 - Ten-Year Operating Expenses Growth
@@ -41,8 +41,8 @@ In v0 and v1, HedgeHog will only be analysing companies in the S&P 500. Starting
 # How does it do all of that?
 HedgeHog is written entirely in Python and mainly uses two APIs to do its job:
 
-- AlphaVantage API : Allows HedgeHog to access financial information about the company
-- Meta Llama API : Allows HedgeHog to analyse market sentiment around a company using a Meta's Open Source Llama Large Language Model
+- AlphaVantage API: Allows HedgeHog to access financial information about the company
+- Google Gemeni API: Allows HedgeHog to analyse the market and the company using up-to-date online information 
 
 # Current Developement State
 HedgeHog is currently in early-stage developement and therefore non-functional. I am currently working on the base functions that retrieve financial and market information.
