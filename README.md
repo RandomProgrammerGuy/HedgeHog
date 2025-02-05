@@ -26,7 +26,7 @@ It also conducts some market research on the company:
 - Overall public sentiment toward the company
 - Overall public sentiment toward the company's leadership
 - Overall public sentiment toward the market sector
-- Company's efforts in sustainability and responsible management
+- Company's efforts in ESG, sustainability and responsible management
 - Company's positioning amongst competitors (Coming in V1)
 
 Based on the above-listed factors, HedgeHog makes one of three decisions:

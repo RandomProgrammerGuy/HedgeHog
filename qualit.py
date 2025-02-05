@@ -10,8 +10,20 @@ from apikeys import gemeni_api_key
 
 genai.configure(api_key=gemeni_api_key)
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+gemeni = genai.GenerativeModel("gemini-1.5-flash")
 
-response = model.generate_content("This is a test. Say Hello World in return.")
+def analyse_public_sentiment_company(ticker : str):
+    response = gemeni.generate_content(f"Analyse the general sentiment towards the company whose ticker is {ticker}. YOUR RESPONSE SHOULD ONLY INCLUDE A NUMBER BETWEEN 0 (= THE COMPANY IS VERY HATED) AND 1 (= THE COMPANY IS VERY LOVED)")
+    return response.text
 
-print(response.text)
+def analyse_public_sentiment_leadership(ticker : str):
+    response = gemeni.generate_content(f"Analyse the general sentiment towards the leadership of the company whose ticker is {ticker}. YOUR RESPONSE SHOULD ONLY INCLUDE A NUMBER BETWEEN 0 (= THE LEADERSHIP IS VERY HATED) AND 1 (= THE LEADERSHIP IS VERY LOVED)")
+    return response.text
+
+def analyse_public_sentiment_sector(ticker : str):
+    response = gemeni.generate_content(f"Analyse the general sentiment towards the industry sector of the company whose ticker is {ticker}. YOUR RESPONSE SHOULD ONLY INCLUDE A NUMBER BETWEEN 0 (= THE SECTOR IS VERY HATED) AND 1 (= THE SECTOR IS VERY LOVED)")
+    return response.text
+
+def analyse_esg_and_sustainability(ticker : str):
+    response = gemeni.generate_content(f"How enviornmentally and morally responsible is the company whose ticker is {ticker}? Are they good with ESG? YOUR RESPONSE SHOULD ONLY INCLUDE A NUMBER BETWEEN 0 (= THE COMPANY IS VERY IRRESPONSIBLE/IMMORAL) AND 1 (= THE COMPANY IS VERY RESPONSIBLE)")
+    return response.text
