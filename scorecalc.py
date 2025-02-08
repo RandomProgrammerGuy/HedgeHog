@@ -14,13 +14,28 @@ def standardized_normal_dist(x : float, std : float, mean : float):
 
 def liabilities_to_equity_score(balance_sheet : dict):
     """Returns the score attributed to a company's liabilities to equity ratio."""
-    lte = liabilities_to_equity(balance_sheet)
-    return standardized_normal_dist(lte, 0.425, 1.0)
+    val = liabilities_to_equity(balance_sheet)
+    return standardized_normal_dist(val, 0.425, 1.0)
 
-def liabilities_to_equity_score(balance_sheet : dict):
-    """Returns the score attributed to a company's liabilities to equity ratio."""
-    lte = liabilities_to_equity(balance_sheet)
-    return standardized_normal_dist(lte, 0.425, 1.0)
+def liabilities_to_capital_score(balance_sheet : dict):
+    """Returns the score attributed to a company's liabilities to capital ratio."""
+    val = liabilities_to_capital(balance_sheet)
+    return standardized_normal_dist(val, 0.128, 0.45)
+
+def assets_to_equity_score(balance_sheet : dict):
+    """Returns the score attributed to a company's assets to equity ratio."""
+    val = assets_to_equity(balance_sheet)
+    return standardized_normal_dist(val, 0.5, 1.5)
+
+def quick_ratio_score(balance_sheet : dict):
+    """Returns the score attributed to a company's quick ratio."""
+    val = quick_ratio(balance_sheet)
+    return standardized_normal_dist(val, 0.213, 1.0)
+
+def current_ratio_score(balance_sheet : dict):
+    """Returns the score attributed to a company's current ratio."""
+    val = current_ratio(balance_sheet)
+    return standardized_normal_dist(val, 0.213, 1.0)
 
 test_tick = 'NVDA'
 b_sheet = get_balance_sheet(test_tick, alphavantage_api_key)
