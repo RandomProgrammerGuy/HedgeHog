@@ -9,8 +9,13 @@ from apikeys import *
 def standardized_normal_dist(x : float, std : float, mean : float):
     """Returns the normal place of x in a normal distribution curve whose standard
        variation and expected value are passed as parameters."""
-    peak_val = (1/sqrt(2 * pi * (std**2))) * exp(-((1 - mean)**2/(2 * std**2)))
+    peak_val = (1/sqrt(2 * pi * (std**2))) * exp(-((mean - mean)**2/(2 * std**2)))
     return ((1/sqrt(2 * pi * (std**2))) * exp(-((x - mean)**2/(2 * std**2))))/peak_val
+
+def liabilities_to_equity_score(balance_sheet : dict):
+    """Returns the score attributed to a company's liabilities to equity ratio."""
+    lte = liabilities_to_equity(balance_sheet)
+    return standardized_normal_dist(lte, 0.425, 1.0)
 
 def liabilities_to_equity_score(balance_sheet : dict):
     """Returns the score attributed to a company's liabilities to equity ratio."""
