@@ -4,6 +4,7 @@
 
 from math import exp, sqrt, pi
 from quant import *
+from apikeys import *
 
 def standardized_normal_dist(x : float, std : float, mean : float):
     """Returns the normal place of x in a normal distribution curve whose standard
@@ -15,3 +16,8 @@ def liabilities_to_equity_score(balance_sheet : dict):
     """Returns the score attributed to a company's liabilities to equity ratio."""
     lte = liabilities_to_equity(balance_sheet)
     return standardized_normal_dist(lte, 0.425, 1.0)
+
+test_tick = 'NVDA'
+b_sheet = get_balance_sheet(test_tick, alphavantage_api_key)
+print(liabilities_to_equity(b_sheet))
+print(liabilities_to_equity_score(b_sheet))

@@ -189,7 +189,7 @@ def ten_yr_share_count_growth(balance_sheet : dict):
     
     return ((int(balance_sheet["annualReports"][0]["commonStock"]) - int(balance_sheet["annualReports"][9]["commonStock"]))/(int(balance_sheet["annualReports"][9]["commonStock"]))) * 100
 
-
+""" 
 b_sheet = get_balance_sheet("AAPL", alphavantage_api_key)
 income_s = get_income_statement("AAPL", alphavantage_api_key)
 cflow = get_cash_flow("AAPL", alphavantage_api_key)
@@ -206,4 +206,4 @@ print(f"Ten-Year Operating Expenses Growth : {ten_yr_operating_expenses_growth(i
 print(f"       Ten-Year Liabilities Growth : {ten_yr_liabilities_growth(b_sheet):.3f}%")
 print(f"            Ten-Year Assets Growth : {ten_yr_assets_growth(b_sheet):.3f}%")
 print(f"         Ten-Year Cash Flow Growth : {ten_yr_cash_flow_growth(cflow):.3f}%")
-print(f"       Ten-Year Share Count Growth : {ten_yr_share_count_growth(b_sheet):.3f}%")
+print(f"       Ten-Year Share Count Growth : {ten_yr_share_count_growth(b_sheet):.3f}%") """
