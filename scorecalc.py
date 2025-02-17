@@ -37,7 +37,27 @@ def current_ratio_score(balance_sheet : dict):
     val = current_ratio(balance_sheet)
     return standardized_normal_dist(val, 0.213, 1.0)
 
-test_tick = 'NVDA'
-b_sheet = get_balance_sheet(test_tick, alphavantage_api_key)
-print(liabilities_to_equity(b_sheet))
-print(liabilities_to_equity_score(b_sheet))
+def ten_yr_opex_growth_score(income_statement : dict):
+    """Returns the score attributed to a company's 10-year operating expenses growth"""
+    val = ten_yr_operating_expenses_growth(income_statement)
+    return standardized_normal_dist(val, 34, 120)
+
+def ten_yr_assets_growth_score(balance_sheet : dict):
+    """Returns the score attributed to a company's 10-year assets growth"""
+    val = ten_yr_assets_growth(balance_sheet)
+    return standardized_normal_dist(val, 64, 125)
+
+def ten_yr_liabilities_growth_score(balance_sheet : dict):
+    """Returns the score attributed to a company's 10-year liabilities growth"""
+    val = ten_yr_liabilities_growth(balance_sheet)
+    return standardized_normal_dist(val, 47, 95)
+
+def ten_yr_share_count_growth_score(cash_flow : dict):
+    """Returns the score attributed to a company's 10-year cash flow growth"""
+    val = ten_yr_cash_flow_growth(cash_flow)
+    return standardized_normal_dist(val, 8.5, 10)
+
+def ten_yr_share_count_growth_score(balance_sheet : dict):
+    """Returns the score attributed to a company's 10-year share count growth"""
+    val = ten_yr_share_count_growth(balance_sheet)
+    return standardized_normal_dist(val, 8.5, 10)
