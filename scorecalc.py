@@ -27,6 +27,11 @@ def assets_to_equity_score(balance_sheet : dict):
     val = assets_to_equity(balance_sheet)
     return standardized_normal_dist(val, 0.5, 1.5)
 
+def debt_to_ebitda_score(balance_sheet : dict, income_statement : dict):
+    "Returns the score attributed to a company's debt to EBITDA ratio."
+    val = debt_to_ebitda(balance_sheet, income_statement)
+    return standardized_normal_dist(val, 0.425, 1)
+
 def quick_ratio_score(balance_sheet : dict):
     """Returns the score attributed to a company's quick ratio."""
     val = quick_ratio(balance_sheet)
