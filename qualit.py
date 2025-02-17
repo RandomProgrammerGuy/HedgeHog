@@ -27,30 +27,3 @@ def analyse_public_sentiment_sector(ticker : str):
 def analyse_esg_and_sustainability(ticker : str):
     response = gemeni.generate_content(f"How enviornmentally and morally responsible is the company whose ticker is {ticker}? Are they good with ESG? YOUR RESPONSE SHOULD ONLY INCLUDE A NUMBER BETWEEN 0 (= THE COMPANY IS VERY IRRESPONSIBLE/IMMORAL) AND 1 (= THE COMPANY IS VERY RESPONSIBLE). The score should follow a normal distribution curve. BE BRUTALLY HONEST AND OBJECTIVE. If a company's operation sector is an enviornmentally-damaging one (like oil or natural gas), it should get a lower score.")
     return response.text.strip()
-
-tick = "TSLA"
-print(f"\nCOMPANY TICKER: {tick}")
-print( "___________________________________________")
-print(f"Public sentiment towards company    | {analyse_public_sentiment_company(tick)} |")
-print(f"Public sentiment towards leadership | {analyse_public_sentiment_leadership(tick)} |")
-print(f"Public sentiment towards sector     | {analyse_public_sentiment_sector(tick)} |")
-print(f"ESG and sustainability score        | {analyse_esg_and_sustainability(tick)} |")
-print( "___________________________________________\n")
-
-tick = "MSFT"
-print(f"\nCOMPANY TICKER: {tick}")
-print( "___________________________________________")
-print(f"Public sentiment towards company    | {analyse_public_sentiment_company(tick)} |")
-print(f"Public sentiment towards leadership | {analyse_public_sentiment_leadership(tick)} |")
-print(f"Public sentiment towards sector     | {analyse_public_sentiment_sector(tick)} |")
-print(f"ESG and sustainability score        | {analyse_esg_and_sustainability(tick)} |")
-print( "___________________________________________\n")
-
-tick = "XOM"
-print(f"\nCOMPANY TICKER: {tick}")
-print( "___________________________________________")
-print(f"Public sentiment towards company    | {analyse_public_sentiment_company(tick)} |")
-print(f"Public sentiment towards leadership | {analyse_public_sentiment_leadership(tick)} |")
-print(f"Public sentiment towards sector     | {analyse_public_sentiment_sector(tick)} |")
-print(f"ESG and sustainability score        | {analyse_esg_and_sustainability(tick)} |")
-print( "___________________________________________\n")
