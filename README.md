@@ -1,6 +1,8 @@
 # HedgeHog
 
-Current Version: 0.0.0 INDEV-INCOMPLETE
+![HedgeHog Logo](media/logo.png)
+
+Current Version: 0.0.1 Beta
 
 # Important Notice
 
@@ -18,7 +20,6 @@ HedgeHog is an open-source, mid-to-long-term-focused stock portfolio manager. He
 - Ten-Year Operating Expenses Growth
 - Ten-Year Liabilities Growth
 - Ten-Year Assets Growth
-- Ten-Year Cash Flow Growht
 - Ten-Year Share Count Growth
 
 It also conducts some market research on the company:
@@ -27,16 +28,19 @@ It also conducts some market research on the company:
 - Overall public sentiment toward the company's leadership
 - Overall public sentiment toward the market sector
 - Company's efforts in ESG, sustainability and responsible management
-- Company's positioning amongst competitors (Coming in V1)
+
+It attributes a score to each of the above ratios and parameters based on a standardized normal distribution curve (meaning that the value attributed to the mean is 1.0.)
 
 Based on the above-listed factors, HedgeHog makes one of three decisions:
-- It may decide to recommend buying a company if it exhibits strong finances and is well-liked by the market
-- It may decide to put a company on a watchlist if it isn't in great shape but has potential to grow in the near future
-- It may decide against buying a company if it exhibits bad finances or the market is hostile against the company.
+- It may decide to recommend buying a company if its average score across all parameters is in the 50th percentile or above. This would signify that the company exhibits strong finances and is well-liked by the market. 
+- It may decide to put a company on a watchlist if it places between the 25th and 50th percentile. This would mean that the company isn't in the greatest shape but has potential to grow in the near future
+- It may decide against buying a company if it places below the 25th percentile. This usually happens if the company exhibits bad finances or the market is hostile against the company.
 
-The amount of money it invests in each company it chooses depends on how much it "likes" the company based on the market and fundamental analysis results. It invests more money into companies that it believes to have the strongest chance of growth.
+HedgeHog's portfolio picks are weighted; companies will get a cut of your total budget that is proportional to their score. The goal is to optimize the portfolio division to give more weight to the companies with the strongest finances.
 
-In v0 and v1, HedgeHog will only be analysing companies in the S&P 500. Starting from v2, it will analyse the entire US stock market. Non-US markets may come in the future although they are not guaranteed
+In the current v0.0.1 Beta HedgeHog analyzes a very small set of companies defined in the list `test_set` in `main.py`. In v0 and v1, HedgeHog will be analysing all companies in the S&P 500, and starting from v2, it will analyse the entire US stock market. Non-US markets may come in the future although they are not guaranteed. 
+
+The main challenge with analyzing the entire stock market is identifying shady companies that display good finances on the surface but do not have good foundations in reality. Analyzing non-US stock markets also brings along problems with comparison and currency conversion that may trick the program into making an inaccurate evaluation of the company's finances. 
 
 # How does it do all of that?
 HedgeHog is written entirely in Python and mainly uses two APIs to do its job:
@@ -45,15 +49,15 @@ HedgeHog is written entirely in Python and mainly uses two APIs to do its job:
 - Google Gemeni API: Allows HedgeHog to analyse the market and the company using up-to-date online information 
 
 # Current Developement State
-HedgeHog is currently in early-stage developement and therefore non-functional. I am currently working on the base functions that retrieve financial and market information.
+HedgeHog is currently in beta testing. The current release is 0.0.1 BETA, released on Feb. 18 2025. I am currently working on back-testing on historical data and optimizing the algorithm as well as finding more financial parameters to take into account
 
-The first functional version, 0.0.1 Beta, is expected to release by the end of February 2025. I will be able to provide an anticipated release date for the first stable version (0.1.0) once 0.0.1 is released.
+The currently predicted date for the first v0 stable release is April 2025, with v1 predicted to come out around July or August 2025.
 
 # Version Roadmap
 
 ### V0
 
-HedgeHog V0 will be the first stable release of HedgeHog. At this stage it will be a simple stock picker that won't make any trades on the market by itself and it will only give recommendations on what to buy. It will not take into account the user's current portfolio.
+HedgeHog v0 will be the first stable release of HedgeHog. At this stage it will be a simple stock picker that won't make any trades on the market by itself and it will only give recommendations on what to buy. It will not take into account the user's current portfolio.
 
 Its stock list will be limited to the S&P 500. It is going to include a textual UI in the terminal.
 

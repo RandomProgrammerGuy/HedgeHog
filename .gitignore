@@ -174,3 +174,4 @@ cython_debug/
 portfolio.txt
 apikeys.py
 avapikeys
+media/logo.psd
