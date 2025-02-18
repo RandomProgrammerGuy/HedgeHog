@@ -1,8 +1,6 @@
-# HedgeHog
-
 ![HedgeHog Logo](media/logo.png)
 
-Current Version: 0.0.1 Beta
+<div style="text-align: center">Current Version: 0.0.1 Beta</div>
 
 # Important Notice
 
