@@ -1,15 +1,21 @@
 ![HedgeHog Logo](media/logo.png)
 
-# Current Version
+# Important Notice
+
+HedgeHog can make bad financial decisions. I advise all users to keep a track of the investments the program chooses and to research the stocks independently, being ready to intervene if the program makes a mistake. By using HedgeHog, the user agrees to assume all responsibility in case of financial loss or damages resulting directly or indirectly from the program's use.
+
+# Overview
 
 ![License](https://img.shields.io/badge/License-BSD_3_Clause_License-violet)
 ![Version](https://img.shields.io/badge/Version-0.0.1_Beta-yellow)
 
-Current Version: 0.0.1 Beta
-
-# Important Notice
-
-HedgeHog can make bad financial decisions. I advise all users to keep a track of the investments the program chooses and to research the stocks independently, being ready to intervene if the program makes a mistake. By using HedgeHog, the user agrees to assume all responsibility in case of financial loss or damages resulting directly or indirectly from the program's use.
+### TABLE OF CONTENTS
+- [What is HedgeHog](#what-is-hedgehog)
+- [How does it do all of that](#how-does-it-do-all-of-that)
+- [Current dev. state](#current-developement-state)
+- [Version roadmap](#version-roadmap)
+- [How to install and use](#how-to-install-and-use)
+- [Who is behind HedgeHog](#who-is-behind-hedgehog)
 
 # What is HedgeHog?
 HedgeHog is an open-source, mid-to-long-term-focused stock portfolio manager. HedgeHog's investment model is based on fundamental analysis and market sentiment. For each stock, HedgeHog analyses the company's financial filings and calculates numerous ratios:
@@ -51,12 +57,12 @@ HedgeHog is written entirely in Python and mainly uses two APIs to do its job:
 - AlphaVantage API: Allows HedgeHog to access financial information about the company
 - Google Gemeni API: Allows HedgeHog to analyse the market and the company using up-to-date online information 
 
-# Current Developement State
+# Current developement state
 HedgeHog is currently in beta testing. The current release is 0.0.1 BETA, released on Feb. 18 2025. I am currently working on back-testing on historical data and optimizing the algorithm as well as finding more financial parameters to take into account
 
 The currently predicted date for the first v0 stable release is April 2025, with v1 predicted to come out around July or August 2025.
 
-# Version Roadmap
+# Version roadmap
 
 ### V0
 
@@ -83,7 +89,7 @@ Its stock list will be expanded to the entire US Stock Market. It is going to in
 
 Coming soon!
 
-# How to Install and Use
+# How to install and use
 
 Before you install HedgeHog, I would like to remind you that HedgeHog can make bad financial decisions. I advise all users to keep a track of the investments the program chooses and to research the stocks independently, being ready to intervene if the program makes a mistake. By using HedgeHog, the user agrees to assume all responsibility in case of financial loss or damages resulting directly or indirectly from the program's use.
 
