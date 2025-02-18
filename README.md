@@ -2,8 +2,8 @@
 
 # Current Version
 
-![License](https://img.shields.io/badge/License-MIT-violet)
-![Version](https://img.shields.io/badge/Version-0.0.1_Beta-orane)
+![License](https://img.shields.io/badge/License-BSD_3_Clause_License-violet)
+![Version](https://img.shields.io/badge/Version-0.0.1_Beta-yellow)
 
 Current Version: 0.0.1 Beta
 
