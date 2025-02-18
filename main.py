@@ -23,7 +23,7 @@ print('■■■■■   ■■■■■    ■  ■   ■  ■■   ■■■�
 print('■   ■   ■        ■  ■   ■   ■   ■          ■   ■   ■   ■   ■   ■')
 print('■   ■   ■■■■■   ■■■■■   ■■■■■   ■■■■■      ■   ■   ■■■■■   ■■■■■')
 
-test_set = ['AAPL', 'MSFT', 'NVDA', 'AMZN', 'META', 'TSLA', 'AVGO', 'BRK.B', 'COST']
+test_set = ['AAPL', 'MSFT', 'NVDA', 'AMZN', 'META']
 
 for company in test_set:
     print(f'■ Currently Analysing: {company}')
@@ -126,3 +126,4 @@ for company in test_set:
         print('DECISION: AVOID')
 
     print(' ')
+    sleep(2)
