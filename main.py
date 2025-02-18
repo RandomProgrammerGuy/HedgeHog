@@ -17,12 +17,14 @@ from tickers import *
 from apikeys import *
 from time import sleep
 
+# Startup splash screen
 print('■   ■   ■■■■■   ■■■■■   ■■■■■   ■■■■■      ■   ■   ■■■■■   ■■■■■')
 print('■   ■   ■        ■  ■   ■       ■          ■   ■   ■   ■   ■    ')
 print('■■■■■   ■■■■■    ■  ■   ■  ■■   ■■■■■      ■■■■■   ■   ■   ■  ■■')
 print('■   ■   ■        ■  ■   ■   ■   ■          ■   ■   ■   ■   ■   ■')
 print('■   ■   ■■■■■   ■■■■■   ■■■■■   ■■■■■      ■   ■   ■■■■■   ■■■■■')
 
+# Get total investment budget from user
 print('')
 
 print('Enter your total investment budget: ', end='')
@@ -31,10 +33,12 @@ total_budget = float(input())
 
 print('')
 
-test_set = ['AAPL', 'MSFT', 'NVDA', 'AMZN', 'META']
+test_set = ['AAPL', 'MSFT', 'NVDA', 'AMZN', 'META'] # Will be replaced by variable 'sp500' from 'tickers' module in full version
 
+# Will include the companies the algorithm has decided to buy
 cart = {}
 
+# Main decision-making loop. If you get errors in this part it is probably due to the two APIs used
 for company in test_set:
     print(f'■ Currently Analysing: {company}')
 
@@ -139,6 +143,7 @@ for company in test_set:
     print(' ')
     sleep(2)
 
+# Writes to portfolio file
 portfolio_file = open('portfolio.txt', 'w')
 
 for pick in cart:
