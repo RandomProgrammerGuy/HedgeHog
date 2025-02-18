@@ -2,6 +2,9 @@
 
 # Current Version
 
+![License](https://img.shields.io/badge/License-MIT-violet)
+![Version](https://img.shields.io/badge/Version-0.0.1_Beta-orane)
+
 Current Version: 0.0.1 Beta
 
 # Important Notice
@@ -79,6 +82,32 @@ Its stock list will be expanded to the entire US Stock Market. It is going to in
 ### V4 and Later
 
 Coming soon!
+
+# How to Install and Use
+
+Before you install HedgeHog, I would like to remind you that HedgeHog can make bad financial decisions. I advise all users to keep a track of the investments the program chooses and to research the stocks independently, being ready to intervene if the program makes a mistake. By using HedgeHog, the user agrees to assume all responsibility in case of financial loss or damages resulting directly or indirectly from the program's use.
+
+To install the current version of HedgeHog, you need to have Python installed. If you do not, visit [the Python.org website](https://www.python.org) to realize how to install it. With Python installed, open a Linux/MacOS Terminal or Windows Command Line and paste the command below:
+
+```
+git clone https://github.com/RandomProgrammerGuy/HedgeHog DESTINATION_PATH
+```
+
+Then, use the following command to navigate to the destination path:
+
+```
+cd DESTINATION_PATH
+```
+
+Alternatively, if you are not comfortable with using a terminal, use the OS itself to navigate to the destination path, right click and open a Terminal/Command Line window in the current directory.
+
+Once you get to the folder, execute the following command in the terminal:
+
+```
+python3 main.py
+```
+
+If you get no errors during execution, the picks will be written in a file called `portfolio.txt`.
 
 # Who is behind HedgeHog?
 HedgeHog is developed and maintained by Parsa Farjam, a CS-Math Double Degree student at Paris-Saclay University. 
