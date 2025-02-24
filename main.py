@@ -18,11 +18,11 @@ from apikeys import *
 from time import sleep
 
 # Startup splash screen
-print('■   ■   ■■■■■   ■■■■■   ■■■■■   ■■■■■      ■   ■   ■■■■■   ■■■■■')
-print('■   ■   ■        ■  ■   ■       ■          ■   ■   ■   ■   ■    ')
-print('■■■■■   ■■■■■    ■  ■   ■  ■■   ■■■■■      ■■■■■   ■   ■   ■  ■■')
-print('■   ■   ■        ■  ■   ■   ■   ■          ■   ■   ■   ■   ■   ■')
-print('■   ■   ■■■■■   ■■■■■   ■■■■■   ■■■■■      ■   ■   ■■■■■   ■■■■■')
+print('■    ■   ■■■■■■   ■■■■■■   ■■■■■■   ■■■■■■      ■    ■   ■■■■■■   ■■■■■■')
+print('■    ■   ■         ■   ■   ■        ■           ■    ■   ■    ■   ■     ')
+print('■■■■■■   ■■■■■■    ■   ■   ■  ■■■   ■■■■■■      ■■■■■■   ■    ■   ■  ■■■')
+print('■    ■   ■         ■   ■   ■    ■   ■           ■    ■   ■    ■   ■    ■')
+print('■    ■   ■■■■■■   ■■■■■■   ■■■■■■   ■■■■■■      ■    ■   ■■■■■■   ■■■■■■')
 
 # Get total investment budget from user
 print('')
@@ -33,7 +33,7 @@ total_budget = float(input())
 
 print('')
 
-test_set = ['AAPL', 'MSFT', 'NVDA', 'AMZN', 'META'] # Will be replaced by variable 'sp500' from 'tickers' module in full version
+test_set = ['AAPL', 'MSFT', 'NVDA', 'AMZN'] # Will be replaced by variable 'sp500' from 'tickers' module in full version
 
 # Will include the companies the algorithm has decided to buy
 cart = {}
@@ -51,103 +51,104 @@ for company in test_set:
     print(f'Debt-to-Equity Ratio: {liabilities_to_equity(company_balance_sheet)}')
     print(f'Debt-to-Equity Atrributed Score: {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     scores.append(liabilities_to_capital_score(company_balance_sheet))
     print(f'Debt-to-Capital Ratio: {liabilities_to_capital(company_balance_sheet)}')
     print(f'Debt-to-Capital Atrributed Score: {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     scores.append(float(assets_to_equity_score(company_balance_sheet)))
     print(f'Assets-to-Equity Ratio: {assets_to_equity(company_balance_sheet)}')
     print(f'Assets-to-Equity Atrributed Score: {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     scores.append(float(debt_to_ebitda_score(company_balance_sheet, company_income_statement)))
     print(f'Debt-to-EBITDA Ratio: {debt_to_ebitda(company_balance_sheet, company_income_statement)}')
     print(f'Debt-to-EBITDA Atrributed Score: {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     scores.append(float(quick_ratio_score(company_balance_sheet)))
     print(f'Quick Ratio: {quick_ratio(company_balance_sheet)}')
     print(f'Quick Ratio Atrributed Score: {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     scores.append(float(current_ratio_score(company_balance_sheet)))
     print(f'Current Ratio: {current_ratio(company_balance_sheet)}')
     print(f'Current Ratio Atrributed Score: {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     scores.append(float(ten_yr_opex_growth_score(company_income_statement)))
     print(f'10-Year Operating Expenses Growth: {ten_yr_operating_expenses_growth(company_income_statement)}')
     print(f'10-Year Operating Expenses Growth Atrributed Score: {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     scores.append(float(ten_yr_assets_growth_score(company_balance_sheet)))
     print(f'10-Year Assets Growth: {ten_yr_assets_growth(company_balance_sheet)}')
     print(f'10-Year Assets Growth Atrributed Score: {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     scores.append(float(ten_yr_liabilities_growth_score(company_balance_sheet)))
     print(f'10-Year Liabilities Growth: {ten_yr_liabilities_growth(company_balance_sheet)}')
     print(f'10-Year Liabilities Growth Atrributed Score: {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
-    scores.append(float(ten_yr_share_count_growth_score(company_balance_sheet)))
-    print(f'10-Year Share Count Growth: {ten_yr_share_count_growth(company_balance_sheet)}')
-    print(f'10-Year Share Count Growth Atrributed Score: {scores[-1]}')
+    # scores.append(float(ten_yr_share_count_growth_score(company_balance_sheet)))
+    # print(f'10-Year Share Count Growth: {ten_yr_share_count_growth(company_balance_sheet)}')
+    # print(f'10-Year Share Count Growth Atrributed Score: {scores[-1]}')
 
-    sleep(0.5)
+    # sleep(0.2)
 
     scores.append(float(analyse_public_sentiment_company(company)))
     print(f'Public Sentiment Towards the Company {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     scores.append(float(analyse_public_sentiment_leadership(company)))
     print(f'Public Sentiment Towards the Company\'s Leadership {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     scores.append(float(analyse_public_sentiment_sector(company)))
     print(f'Public Sentiment Towards the Company\'s Industry Sector {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     scores.append(float(analyse_esg_and_sustainability(company)))
     print(f'The Company\'s ESG and Sustainability Efforts {scores[-1]}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     scores_avg = sum(scores) / len(scores)
     print(f'Company\'s Average Score {scores_avg}')
 
-    sleep(0.5)
+    sleep(0.2)
 
     if scores_avg > 0.50:
-        print('DECISION: BUY')
+        print('-- DECISION: BUY')
         cart[company] = scores_avg
     elif 0.25 < scores_avg <= 50:
-        print('DECISION: WAITLIST')
+        print('-- DECISION: WAITLIST')
     else:
-        print('DECISION: AVOID')
+        print('-- DECISION: AVOID')
 
     print(' ')
-    sleep(2)
+    sleep(3)
 
 # Writes to portfolio file
 portfolio_file = open('portfolio.txt', 'w')
 
+print('"-- WRITING ANALYSIS RESULTS TO "portfolio.txt"')
 for pick in cart:
-    line = f"Buy {(cart[pick]/sum(cart.values)) * total_budget} of {pick} shares"
-    portfolio_file.write()
+    line = f"Buy {(cart[pick]/sum(list(cart.values()))) * total_budget} of {pick} shares"
+    portfolio_file.write(line)
 
 portfolio_file.close()
