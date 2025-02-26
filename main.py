@@ -146,9 +146,11 @@ for company in test_set:
 # Writes to portfolio file
 portfolio_file = open('portfolio.txt', 'w')
 
-print('"-- WRITING ANALYSIS RESULTS TO "portfolio.txt"')
+print('-- WRITING ANALYSIS RESULTS TO "portfolio.txt')
 for pick in cart:
     line = f"Buy {(cart[pick]/sum(list(cart.values()))) * total_budget} of {pick} shares"
     portfolio_file.write(line)
+
+print('File write completed')
 
 portfolio_file.close()
