@@ -40,10 +40,7 @@ It also conducts some market research on the company:
 
 It attributes a score to each of the above ratios and parameters based on a standardized normal distribution curve (meaning that the value attributed to the mean is 1.0.)
 
-Based on the above-listed factors, HedgeHog makes one of three decisions:
-- It may decide to recommend buying a company if its average score across all parameters is in the 50th percentile or above. This would signify that the company exhibits strong finances and is well-liked by the market. 
-- It may decide to put a company on a watchlist if it places between the 25th and 50th percentile. This would mean that the company isn't in the greatest shape but has potential to grow in the near future
-- It may decide against buying a company if it places below the 25th percentile. This usually happens if the company exhibits bad finances or the market is hostile against the company.
+HedgeHog will then look at all of the companies it has analyzed, and it will decide to buy the companies whose scores are above the average score of all analyzed companies. This makes sure that the portfolio is balanced and diverse, even if the overall score of the companies analyzed is generally low.
 
 HedgeHog's portfolio picks are weighted; companies will get a cut of your total budget that is proportional to their score. The goal is to optimize the portfolio division to give more weight to the companies with the strongest finances.
 
