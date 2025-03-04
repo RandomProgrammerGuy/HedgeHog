@@ -132,25 +132,26 @@ for company in test_set:
 
     sleep(0.2)
 
-    if scores_avg > 0.50:
-        print('-- DECISION: BUY')
-        cart[company] = scores_avg
-    elif 0.25 < scores_avg <= 50:
-        print('-- DECISION: WAITLIST')
-    else:
-        print('-- DECISION: AVOID')
+    cart[company] = scores_avg
 
     print(' ')
     sleep(3)
 
+# Sorts the cart by score values
+sorted_cart = {key: value for key, 
+               value in sorted(cart.items(), 
+                               key=lambda item: item[1])}
+
+sorted_cart_selection = dict(list(sorted_cart.items())[len(sorted_cart) // 2:])
+
 # Writes to portfolio file
 portfolio_file = open('portfolio.txt', 'w')
 
-print('-- WRITING ANALYSIS RESULTS TO "portfolio.txt')
-for pick in cart:
-    line = f"Buy {(cart[pick]/sum(list(cart.values()))) * total_budget} of {pick} shares"
+print('WRITING ANALYSIS RESULTS TO "portfolio.txt"')
+for pick in sorted_cart_selection:
+    line = f"Buy {(sorted_cart_selection[pick]/sum(list(sorted_cart_selection.values()))) * (total_budget):.2f}$ of {pick} shares\n"
     portfolio_file.write(line)
 
-print('File write completed')
+print('File write completed. Exiting program...')
 
 portfolio_file.close()
