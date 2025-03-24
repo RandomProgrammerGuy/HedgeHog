@@ -83,29 +83,37 @@ for company in test_set:
 
     sleep(0.2)
 
-    scores.append(float(ten_yr_opex_growth_score(company_income_statement)))
-    print(f'10-Year Operating Expenses Growth: {ten_yr_operating_expenses_growth(company_income_statement)}')
-    print(f'10-Year Operating Expenses Growth Atrributed Score: {scores[-1]}')
+    status = ten_yr_operating_expenses_growth(company_income_statement)
 
-    sleep(0.2)
-
-    scores.append(float(ten_yr_assets_growth_score(company_balance_sheet)))
-    print(f'10-Year Assets Growth: {ten_yr_assets_growth(company_balance_sheet)}')
-    print(f'10-Year Assets Growth Atrributed Score: {scores[-1]}')
-
-    sleep(0.2)
-
-    scores.append(float(ten_yr_liabilities_growth_score(company_balance_sheet)))
-    print(f'10-Year Liabilities Growth: {ten_yr_liabilities_growth(company_balance_sheet)}')
-    print(f'10-Year Liabilities Growth Atrributed Score: {scores[-1]}')
-
-    sleep(0.2)
-
-    # scores.append(float(ten_yr_share_count_growth_score(company_balance_sheet)))
-    # print(f'10-Year Share Count Growth: {ten_yr_share_count_growth(company_balance_sheet)}')
-    # print(f'10-Year Share Count Growth Atrributed Score: {scores[-1]}')
+    if status != False:
+        scores.append(float(ten_yr_opex_growth_score(company_income_statement)))
+        print(f'10-Year Operating Expenses Growth: {status}')
+        print(f'10-Year Operating Expenses Growth Atrributed Score: {scores[-1]}')
 
     # sleep(0.2)
+
+    status = ten_yr_assets_growth(company_balance_sheet)
+    if status != False:
+        scores.append(float(ten_yr_assets_growth_score(company_balance_sheet)))
+        print(f'10-Year Assets Growth: {status}')
+        print(f'10-Year Assets Growth Atrributed Score: {scores[-1]}')
+
+    # sleep(0.2)
+
+    status = ten_yr_liabilities_growth(company_balance_sheet)
+    if status != False:
+        scores.append(float(ten_yr_liabilities_growth_score(company_balance_sheet)))
+        print(f'10-Year Liabilities Growth: {status}')
+        print(f'10-Year Liabilities Growth Atrributed Score: {scores[-1]}')
+
+    # sleep(0.2)
+
+    # status = ten_yr_share_count_growth(company_balance_sheet)
+
+    # if status != False:
+    #   scores.append(float(ten_yr_share_count_growth_score(company_balance_sheet)))
+    #   print(f'10-Year Share Count Growth: {status}')
+    #   print(f'10-Year Share Count Growth Atrributed Score: {scores[-1]}')
 
     scores.append(float(analyse_public_sentiment_company(company)))
     print(f'Public Sentiment Towards the Company {scores[-1]}')
