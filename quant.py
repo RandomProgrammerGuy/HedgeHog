@@ -140,6 +140,9 @@ def ten_yr_operating_expenses_growth(income_statement : dict):
 
     check_api_limit_reached(income_statement)
 
+    if len(income_statement["annualReports"]) < 11 :
+        return False
+
     if income_statement["annualReports"][1]["operatingExpenses"] == "None" or income_statement["annualReports"][10]["operatingExpenses"] == "None" or income_statement["annualReports"][10]["operatingExpenses"] == "0":
         return False
     
