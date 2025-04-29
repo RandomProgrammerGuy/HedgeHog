@@ -59,6 +59,10 @@ HedgeHog is currently in beta testing. The current release is 0.0.2 BETA, releas
 
 The currently predicted date for the first v0 stable release is April 2025, with v1 predicted to come out around July or August 2025.
 
+# Historical Data Testing Reports
+
+In order to evaluate and improve HedgeHog's performance, each major version is tested using historical data. To view testing reports, visit [this page](./historical_data_testing_reports/index.md).
+
 # Version roadmap
 
 ### V0
