@@ -10,7 +10,6 @@
 # if it is.
 
 import json
-from qualit import *
 from quant import *
 from scorecalc import *
 from tickers import *
@@ -106,44 +105,14 @@ for company in test_set:
         print(f'10-Year Liabilities Growth: {status}')
         print(f'10-Year Liabilities Growth Atrributed Score: {scores[-1]}')
 
-    # sleep(0.2)
-
-    # status = ten_yr_share_count_growth(company_balance_sheet)
-
-    # if status != False:
-    #   scores.append(float(ten_yr_share_count_growth_score(company_balance_sheet)))
-    #   print(f'10-Year Share Count Growth: {status}')
-    #   print(f'10-Year Share Count Growth Atrributed Score: {scores[-1]}')
-
-    scores.append(float(analyse_public_sentiment_company(company)))
-    print(f'Public Sentiment Towards the Company {scores[-1]}')
-
     sleep(0.2)
 
-    scores.append(float(analyse_public_sentiment_leadership(company)))
-    print(f'Public Sentiment Towards the Company\'s Leadership {scores[-1]}')
+    status = ten_yr_share_count_growth(company_balance_sheet)
 
-    sleep(0.2)
-
-    scores.append(float(analyse_public_sentiment_sector(company)))
-    print(f'Public Sentiment Towards the Company\'s Industry Sector {scores[-1]}')
-
-    sleep(0.2)
-
-    scores.append(float(analyse_esg_and_sustainability(company)))
-    print(f'The Company\'s ESG and Sustainability Efforts {scores[-1]}')
-
-    sleep(0.2)
-
-    scores_avg = sum(scores) / len(scores)
-    print(f'Company\'s Average Score {scores_avg}')
-
-    sleep(0.2)
-
-    cart[company] = scores_avg
-
-    print(' ')
-    sleep(3)
+    if status != False:
+        scores.append(float(ten_yr_share_count_growth_score(company_balance_sheet)))
+        print(f'10-Year Share Count Growth: {status}')
+        print(f'10-Year Share Count Growth Atrributed Score: {scores[-1]}')
 
 # Sorts the cart by score values
 sorted_cart = {key: value for key, 
