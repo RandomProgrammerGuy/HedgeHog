@@ -7,7 +7,7 @@ HedgeHog can make bad financial decisions. I advise all users to keep a track of
 # Overview
 
 ![License](https://img.shields.io/badge/License-BSD_3_Clause_License-violet)
-![Version](https://img.shields.io/badge/Version-0.0.2_Beta-yellow)
+![Version](https://img.shields.io/badge/Version-0.0.3_Beta-yellow)
 
 ### TABLE OF CONTENTS
 - [What is HedgeHog](#what-is-hedgehog)
@@ -31,31 +31,21 @@ HedgeHog is an open-source, mid-to-long-term-focused stock portfolio manager. He
 - Ten-Year Assets Growth
 - Ten-Year Share Count Growth
 
-It also conducts some market research on the company:
-
-- Overall public sentiment toward the company
-- Overall public sentiment toward the company's leadership
-- Overall public sentiment toward the market sector
-- Company's efforts in ESG, sustainability and responsible management
-
 It attributes a score to each of the above ratios and parameters based on a standardized normal distribution curve (meaning that the value attributed to the mean is 1.0.)
 
 HedgeHog will then look at all of the companies it has analyzed, and it will decide to buy the companies whose scores are above the average score of all analyzed companies. This makes sure that the portfolio is balanced and diverse, even if the overall score of the companies analyzed is generally low.
 
 HedgeHog's portfolio picks are weighted; companies will get a cut of your total budget that is proportional to their score. The goal is to optimize the portfolio division to give more weight to the companies with the strongest finances.
 
-In the current v0.0.2 Beta HedgeHog analyzes a very small set of companies defined in the list `test_set` in `main.py`. In v0 and v1, HedgeHog will be analysing all companies in the S&P 500, and starting from v2, it will analyse the entire US stock market. Non-US markets may come in the future although they are not guaranteed. 
+In the current v0.0.3 Beta HedgeHog analyzes a very small set of companies defined in the list `test_set` in `main.py`. In v0 and v1, HedgeHog will be analysing all companies in the S&P 500, and starting from v2, it will analyse the entire US stock market. Non-US markets may come in the future although they are not guaranteed. 
 
 The main challenge with analyzing the entire stock market is identifying shady companies that display good finances on the surface but do not have good foundations in reality. Analyzing non-US stock markets also brings along problems with comparison and currency conversion that may trick the program into making an inaccurate evaluation of the company's finances. 
 
 # How does it do all of that?
-HedgeHog is written entirely in Python and mainly uses two APIs to do its job:
-
-- AlphaVantage API: Allows HedgeHog to access financial information about the company
-- Google Gemeni API: Allows HedgeHog to analyse the market and the company using up-to-date online information 
+HedgeHog is written entirely in Python and mainly uses the AlphaVantage API: Allows HedgeHog to access financial information about the company
 
 # Current developement state
-HedgeHog is currently in beta testing. The current release is 0.0.2 BETA, released on Feb. 18 2025. I am currently working on back-testing on historical data and optimizing the algorithm as well as finding more financial parameters to take into account
+HedgeHog is currently in beta testing. The current release is 0.0.3 BETA, released on Feb. 18 2025. I am currently working on back-testing on historical data and optimizing the algorithm as well as finding more financial parameters to take into account
 
 The currently predicted date for the first v0 stable release is April 2025, with v1 predicted to come out around July or August 2025.
 
