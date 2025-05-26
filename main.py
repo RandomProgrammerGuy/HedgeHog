@@ -1,13 +1,13 @@
 # The main decision-making process takes place in this file. The score calculation
-# functions are imported from quant.py and qualit.py, and used here. As a reminder,
-# you need to have an AlphaVantage API key and a Google Gemeni API key stored in an
-# apikeys.py file, in two variables called "alphavantage_api_key" and "gemeni_api_key".
-# This file is in the .gitignore, so as long as you don't modify it you can be assured
-# that your API keys won't get published online. Also remember, the AlphaVantage API
-# has a 25 request per day limit in the free version, which will be pretty easily
-# exceeded by HedgeHog. I have implemented a check function that verifies every time
-# the API is called if the limit is reached, and it will raise a ConnectionRefusedError
-# if it is.
+# functions are imported from quant.py, and used here. As a reminder, you need to
+# have an AlphaVantage API key stored in an apikeys.py file, in two variables called
+# "alphavantage_api_key". This file is in the .gitignore, so as long as you don't modify
+# it you can be assured that your API keys won't get published online.
+
+# Also remember, the AlphaVantage API has a 25 request per day limit in the free version, 
+# which can be  easily exceeded by HedgeHog. I have implemented a check function that 
+# verifies every time the API is called if the limit is reached, and it will raise a 
+# ConnectionRefusedError if it is.
 
 import json
 from quant import *
@@ -32,7 +32,7 @@ total_budget = float(input())
 
 print('')
 
-test_set = ['AAPL', 'MSFT', 'NVDA', 'AMZN'] # Will be replaced by variable 'sp500' from 'tickers' module in full version
+test_set = ['AMZN'] # Will be replaced by variable 'sp500' from 'tickers' module in full version
 
 # Will include the companies the algorithm has decided to buy
 cart = {}
