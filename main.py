@@ -37,9 +37,9 @@ test_set = ['AMZN'] # Will be replaced by variable 'sp500' from 'tickers' module
 # Will include the companies the algorithm has decided to buy
 cart = {}
 
-# Main decision-making loop. If you get errors in this part it is probably due to the two APIs used
+# Main decision-making loop. If you get errors in this part it is probably due to the API
 for company in test_set:
-    print(f'■ Currently Analysing: {company}')
+    print(f'■ Currently Analysing: {company}\n')
 
     scores = []
 
@@ -47,87 +47,99 @@ for company in test_set:
     company_balance_sheet = get_balance_sheet(company, alphavantage_api_key)
 
     scores.append(liabilities_to_equity_score(company_balance_sheet))
-    print(f'Debt-to-Equity Ratio: {liabilities_to_equity(company_balance_sheet)}')
-    print(f'Debt-to-Equity Atrributed Score: {scores[-1]}')
+    print(f'Debt-to-Equity Ratio: \n{liabilities_to_equity(company_balance_sheet)}')
+    print(f'Debt-to-Equity Atrributed Score: \n{scores[-1]}')
+    print('━━━━━━━━━━')
 
-    sleep(0.2)
+    # sleep(0.2)
 
     scores.append(liabilities_to_capital_score(company_balance_sheet))
-    print(f'Debt-to-Capital Ratio: {liabilities_to_capital(company_balance_sheet)}')
-    print(f'Debt-to-Capital Atrributed Score: {scores[-1]}')
+    print(f'Debt-to-Capital Ratio: \n{liabilities_to_capital(company_balance_sheet)}')
+    print(f'Debt-to-Capital Atrributed Score: \n{scores[-1]}')
+    print('━━━━━━━━━━')
 
     sleep(0.2)
 
     scores.append(float(assets_to_equity_score(company_balance_sheet)))
-    print(f'Assets-to-Equity Ratio: {assets_to_equity(company_balance_sheet)}')
-    print(f'Assets-to-Equity Atrributed Score: {scores[-1]}')
+    print(f'Assets-to-Equity Ratio: \n{assets_to_equity(company_balance_sheet)}')
+    print(f'Assets-to-Equity Atrributed Score: \n{scores[-1]}')
+    print('━━━━━━━━━━')
 
-    sleep(0.2)
+    # sleep(0.2)
 
     scores.append(float(debt_to_ebitda_score(company_balance_sheet, company_income_statement)))
-    print(f'Debt-to-EBITDA Ratio: {debt_to_ebitda(company_balance_sheet, company_income_statement)}')
-    print(f'Debt-to-EBITDA Atrributed Score: {scores[-1]}')
+    print(f'Debt-to-EBITDA Ratio: \n{debt_to_ebitda(company_balance_sheet, company_income_statement)}')
+    print(f'Debt-to-EBITDA Atrributed Score: \n{scores[-1]}')
+    print('━━━━━━━━━━')
 
     sleep(0.2)
 
     scores.append(float(quick_ratio_score(company_balance_sheet)))
-    print(f'Quick Ratio: {quick_ratio(company_balance_sheet)}')
-    print(f'Quick Ratio Atrributed Score: {scores[-1]}')
+    print(f'Quick Ratio: \n{quick_ratio(company_balance_sheet)}')
+    print(f'Quick Ratio Atrributed Score: \n{scores[-1]}')
+    print('━━━━━━━━━━')
 
-    sleep(0.2)
+    # sleep(0.2)
 
     scores.append(float(current_ratio_score(company_balance_sheet)))
-    print(f'Current Ratio: {current_ratio(company_balance_sheet)}')
-    print(f'Current Ratio Atrributed Score: {scores[-1]}')
+    print(f'Current Ratio: \n{current_ratio(company_balance_sheet)}')
+    print(f'Current Ratio Atrributed Score: \n{scores[-1]}')
+    print('━━━━━━━━━━')
 
-    sleep(0.2)
+    # sleep(0.2)
 
     status = ten_yr_operating_expenses_growth(company_income_statement)
 
     if status != False:
         scores.append(float(ten_yr_opex_growth_score(company_income_statement)))
-        print(f'10-Year Operating Expenses Growth: {status}')
-        print(f'10-Year Operating Expenses Growth Atrributed Score: {scores[-1]}')
+        print(f'10-Year Operating Expenses Growth: \n{status}')
+        print(f'10-Year Operating Expenses Growth Atrributed Score: \n{scores[-1]}')
+        print('━━━━━━━━━━')
 
     # sleep(0.2)
 
     status = ten_yr_assets_growth(company_balance_sheet)
     if status != False:
         scores.append(float(ten_yr_assets_growth_score(company_balance_sheet)))
-        print(f'10-Year Assets Growth: {status}')
-        print(f'10-Year Assets Growth Atrributed Score: {scores[-1]}')
+        print(f'10-Year Assets Growth: \n{status}')
+        print(f'10-Year Assets Growth Atrributed Score: \n{scores[-1]}')
+        print('━━━━━━━━━━')
 
     # sleep(0.2)
 
     status = one_yr_liabilities_growth(company_balance_sheet)
     if status != False:
         scores.append(float(one_yr_liabilities_growth_score(company_balance_sheet)))
-        print(f'1-Year Liabilities Growth: {status}')
-        print(f'1-Year Liabilities Growth Atrributed Score: {scores[-1]}')
+        print(f'1-Year Liabilities Growth: \n{status}')
+        print(f'1-Year Liabilities Growth Atrributed Score: \n{scores[-1]}')
+        print('━━━━━━━━━━')
 
     # sleep(0.2)
 
     status = two_yr_liabilities_growth(company_balance_sheet)
     if status != False:
         scores.append(float(two_yr_liabilities_growth_score(company_balance_sheet)))
-        print(f'2-Year Liabilities Growth: {status}')
-        print(f'2-Year Liabilities Growth Atrributed Score: {scores[-1]}')
+        print(f'2-Year Liabilities Growth: \n{status}')
+        print(f'2-Year Liabilities Growth Atrributed Score: \n{scores[-1]}')
+        print('━━━━━━━━━━')
 
     # sleep(0.2)
 
     status = five_yr_liabilities_growth(company_balance_sheet)
     if status != False:
         scores.append(float(five_yr_liabilities_growth_score(company_balance_sheet)))
-        print(f'5-Year Liabilities Growth: {status}')
-        print(f'5-Year Liabilities Growth Atrributed Score: {scores[-1]}')
+        print(f'5-Year Liabilities Growth: \n{status}')
+        print(f'5-Year Liabilities Growth Atrributed Score: \n{scores[-1]}')
+        print('━━━━━━━━━━')
 
     # sleep(0.2)
 
     status = ten_yr_liabilities_growth(company_balance_sheet)
     if status != False:
         scores.append(float(ten_yr_liabilities_growth_score(company_balance_sheet)))
-        print(f'10-Year Liabilities Growth: {status}')
-        print(f'10-Year Liabilities Growth Atrributed Score: {scores[-1]}')
+        print(f'10-Year Liabilities Growth: \n{status}')
+        print(f'10-Year Liabilities Growth Atrributed Score: \n{scores[-1]}')
+        print('━━━━━━━━━━')
 
     #sleep(0.2)
 
@@ -135,8 +147,9 @@ for company in test_set:
 
     if status != False:
         scores.append(float(ten_yr_share_count_growth_score(company_balance_sheet)))
-        print(f'10-Year Share Count Growth: {status}')
-        print(f'10-Year Share Count Growth Atrributed Score: {scores[-1]}')
+        print(f'10-Year Share Count Growth: \n{status}')
+        print(f'10-Year Share Count Growth Atrributed Score: \n{scores[-1]}')
+        print('━━━━━━━━━━')
 
 # Sorts the cart by score values
 sorted_cart = {key: value for key, 
