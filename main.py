@@ -58,7 +58,7 @@ for company in test_set:
     print(f'Debt-to-Capital Atrributed Score: \n{scores[-1]}')
     print('━━━━━━━━━━')
 
-    sleep(0.2)
+    # sleep(0.2)
 
     scores.append(float(assets_to_equity_score(company_balance_sheet)))
     print(f'Assets-to-Equity Ratio: \n{assets_to_equity(company_balance_sheet)}')
@@ -72,7 +72,7 @@ for company in test_set:
     print(f'Debt-to-EBITDA Atrributed Score: \n{scores[-1]}')
     print('━━━━━━━━━━')
 
-    sleep(0.2)
+    # sleep(0.2)
 
     scores.append(float(quick_ratio_score(company_balance_sheet)))
     print(f'Quick Ratio: \n{quick_ratio(company_balance_sheet)}')
