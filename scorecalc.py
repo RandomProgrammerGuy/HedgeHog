@@ -76,7 +76,7 @@ def two_yr_liabilities_growth_score(balance_sheet : dict):
 def five_yr_liabilities_growth_score(balance_sheet : dict):
     """Returns the score attributed to a company's 5-year liabilities growth"""
     val = five_yr_liabilities_growth(balance_sheet)
-    return (standardized_normal_dist(val, 237, 29)) / (34.4195 / val)
+    return (standardized_normal_dist(val, 20, 29)) / (34.4195 / val)
 
 
 def ten_yr_liabilities_growth_score(balance_sheet : dict):

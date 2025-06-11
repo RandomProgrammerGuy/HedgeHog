@@ -99,13 +99,37 @@ for company in test_set:
 
     # sleep(0.2)
 
+    status = one_yr_liabilities_growth(company_balance_sheet)
+    if status != False:
+        scores.append(float(one_yr_liabilities_growth_score(company_balance_sheet)))
+        print(f'1-Year Liabilities Growth: {status}')
+        print(f'1-Year Liabilities Growth Atrributed Score: {scores[-1]}')
+
+    # sleep(0.2)
+
+    status = two_yr_liabilities_growth(company_balance_sheet)
+    if status != False:
+        scores.append(float(two_yr_liabilities_growth_score(company_balance_sheet)))
+        print(f'2-Year Liabilities Growth: {status}')
+        print(f'2-Year Liabilities Growth Atrributed Score: {scores[-1]}')
+
+    # sleep(0.2)
+
+    status = five_yr_liabilities_growth(company_balance_sheet)
+    if status != False:
+        scores.append(float(five_yr_liabilities_growth_score(company_balance_sheet)))
+        print(f'5-Year Liabilities Growth: {status}')
+        print(f'5-Year Liabilities Growth Atrributed Score: {scores[-1]}')
+
+    # sleep(0.2)
+
     status = ten_yr_liabilities_growth(company_balance_sheet)
     if status != False:
         scores.append(float(ten_yr_liabilities_growth_score(company_balance_sheet)))
         print(f'10-Year Liabilities Growth: {status}')
         print(f'10-Year Liabilities Growth Atrributed Score: {scores[-1]}')
 
-    sleep(0.2)
+    #sleep(0.2)
 
     status = ten_yr_share_count_growth(company_balance_sheet)
 
