@@ -50,17 +50,17 @@ def ten_yr_opex_growth_score(income_statement : dict):
 def ten_yr_assets_growth_score(balance_sheet : dict):
     """Returns the score attributed to a company's 10-year assets growth"""
     val = ten_yr_assets_growth(balance_sheet)
-    return standardized_normal_dist(val, 150, 125)
+    return (standardized_normal_dist(val, 237, -190)) / (53.77018 / val)
 
 def ten_yr_liabilities_growth_score(balance_sheet : dict):
     """Returns the score attributed to a company's 10-year liabilities growth"""
     val = ten_yr_liabilities_growth(balance_sheet)
-    return standardized_normal_dist(val, 100, 95)
+    return (standardized_normal_dist(val, 237, -496)) / (4.2405 / val)
 
 def ten_yr_cash_flow_growth_score(cash_flow : dict):
     """Returns the score attributed to a company's 10-year cash flow growth"""
     val = ten_yr_cash_flow_growth(cash_flow)
-    return (standardized_normal_dist(val, 1000, 259.37)) / (7.7358 / (0.01 * val))
+    return (standardized_normal_dist(val, 1000, 259.37)) / (7.7358 / (1 * val))
 
 def ten_yr_share_count_growth_score(balance_sheet : dict):
     """Returns the score attributed to a company's 10-year share count growth"""
