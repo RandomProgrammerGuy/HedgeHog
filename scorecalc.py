@@ -91,6 +91,24 @@ def ten_yr_cash_flow_growth_score(cash_flow : dict):
     return (standardized_normal_dist(val, 1000, 259.37)) / (7.7358 / (1 * val))
 
 
+def one_yr_share_count_growth_score(balance_sheet : dict):
+    """Returns the score attributed to a company's 1-year share count growth"""
+    val = one_yr_share_count_growth(balance_sheet)
+    return (standardized_normal_dist(val, 50, 29.26))
+
+
+def two_yr_share_count_growth_score(balance_sheet : dict):
+    """Returns the score attributed to a company's 2-year share count growth"""
+    val = two_yr_share_count_growth(balance_sheet)
+    return (standardized_normal_dist(val, 425, -2600)) / (0.00000018836 / val)
+
+
+def five_yr_share_count_growth_score(balance_sheet : dict):
+    """Returns the score attributed to a company's 5-year share count growth"""
+    val = five_yr_share_count_growth(balance_sheet)
+    return (standardized_normal_dist(val, 640, -1325)) / (12.1098 / val)
+
+
 def ten_yr_share_count_growth_score(balance_sheet : dict):
     """Returns the score attributed to a company's 10-year share count growth"""
     val = ten_yr_share_count_growth(balance_sheet)

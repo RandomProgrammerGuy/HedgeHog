@@ -250,6 +250,51 @@ def ten_yr_cash_flow_growth(cash_flow_report : dict):
     return ((int(cash_flow_report["annualReports"][1]["operatingCashflow"]) - int(cash_flow_report["annualReports"][10]["operatingCashflow"]))/(int(cash_flow_report["annualReports"][10]["operatingCashflow"]))) * 100
 
 
+def one_yr_share_count_growth(balance_sheet : dict):
+    """Calculates the 1yr share count growth of a company whose balance sheet is 
+    passed as a dictionary-type argument. Returns False if it fails to calculate"""
+
+    check_api_limit_reached(balance_sheet)
+
+    if len(balance_sheet["annualReports"]) < 2 :
+        return False
+
+    if balance_sheet["annualReports"][1]["commonStock"] == "None" or balance_sheet["annualReports"][2]["commonStock"] == "None" or balance_sheet["annualReports"][2]["commonStock"] == "0":
+        return False
+    
+    return ((int(balance_sheet["annualReports"][1]["commonStock"]) - int(balance_sheet["annualReports"][2]["commonStock"]))/(int(balance_sheet["annualReports"][2]["commonStock"]))) * 100
+
+
+def two_yr_share_count_growth(balance_sheet : dict):
+    """Calculates the 2yr share count growth of a company whose balance sheet is 
+    passed as a dictionary-type argument. Returns False if it fails to calculate"""
+
+    check_api_limit_reached(balance_sheet)
+
+    if len(balance_sheet["annualReports"]) < 3 :
+        return False
+
+    if balance_sheet["annualReports"][1]["commonStock"] == "None" or balance_sheet["annualReports"][3]["commonStock"] == "None" or balance_sheet["annualReports"][3]["commonStock"] == "0":
+        return False
+    
+    return ((int(balance_sheet["annualReports"][1]["commonStock"]) - int(balance_sheet["annualReports"][3]["commonStock"]))/(int(balance_sheet["annualReports"][3]["commonStock"]))) * 100
+
+
+def five_yr_share_count_growth(balance_sheet : dict):
+    """Calculates the 5yr share count growth of a company whose balance sheet is 
+    passed as a dictionary-type argument. Returns False if it fails to calculate"""
+
+    check_api_limit_reached(balance_sheet)
+
+    if len(balance_sheet["annualReports"]) < 6 :
+        return False
+
+    if balance_sheet["annualReports"][1]["commonStock"] == "None" or balance_sheet["annualReports"][6]["commonStock"] == "None" or balance_sheet["annualReports"][6]["commonStock"] == "0":
+        return False
+    
+    return ((int(balance_sheet["annualReports"][1]["commonStock"]) - int(balance_sheet["annualReports"][6]["commonStock"]))/(int(balance_sheet["annualReports"][6]["commonStock"]))) * 100
+
+
 def ten_yr_share_count_growth(balance_sheet : dict):
     """Calculates the 10yr share count growth of a company whose balance sheet is 
     passed as a dictionary-type argument. Returns False if it fails to calculate"""
