@@ -73,10 +73,10 @@ def liabilities_to_equity(balance_sheet : dict):
     
     check_api_limit_reached(balance_sheet)
     
-    if balance_sheet["annualReports"][1]["totalLiabilities"] == "None" or balance_sheet["annualReports"][1]["totalShareholderEquity"] == "None" or balance_sheet["annualReports"][1]["totalShareholderEquity"] == "0":
+    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "0":
         return False
     
-    return (int(balance_sheet["annualReports"][1]["totalLiabilities"]) / int(balance_sheet["annualReports"][1]["totalShareholderEquity"]))
+    return (int(balance_sheet["annualReports"][0]["totalLiabilities"]) / int(balance_sheet["annualReports"][0]["totalShareholderEquity"]))
 
 
 def liabilities_to_capital(balance_sheet : dict):
@@ -85,10 +85,10 @@ def liabilities_to_capital(balance_sheet : dict):
     
     check_api_limit_reached(balance_sheet)
     
-    if balance_sheet["annualReports"][1]["totalLiabilities"] == "None" or balance_sheet["annualReports"][1]["totalShareholderEquity"] == "None" or int(balance_sheet["annualReports"][1]["totalLiabilities"]) + int(balance_sheet["annualReports"][1]["totalShareholderEquity"]) == "0":
+    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalShareholderEquity"] == "None" or int(balance_sheet["annualReports"][0]["totalLiabilities"]) + int(balance_sheet["annualReports"][0]["totalShareholderEquity"]) == "0":
         return False
     
-    return (int(balance_sheet["annualReports"][1]["totalLiabilities"]) / (int(balance_sheet["annualReports"][1]["totalLiabilities"]) + int(balance_sheet["annualReports"][1]["totalShareholderEquity"])))
+    return (int(balance_sheet["annualReports"][0]["totalLiabilities"]) / (int(balance_sheet["annualReports"][0]["totalLiabilities"]) + int(balance_sheet["annualReports"][0]["totalShareholderEquity"])))
 
 
 def assets_to_equity(balance_sheet : dict):
@@ -100,7 +100,7 @@ def assets_to_equity(balance_sheet : dict):
     if balance_sheet["annualReports"][1]["totalAssets"] == "None" or balance_sheet["annualReports"][1]["totalShareholderEquity"] == "None" or balance_sheet["annualReports"][1]["totalShareholderEquity"] == "0":
         return False
     
-    return (int(balance_sheet["annualReports"][1]["totalAssets"]) / int(balance_sheet["annualReports"][1]["totalShareholderEquity"]))
+    return (int(balance_sheet["annualReports"][0]["totalAssets"]) / int(balance_sheet["annualReports"][0]["totalShareholderEquity"]))
 
 
 def debt_to_ebitda(balance_sheet : dict, income_statement : dict):
@@ -110,10 +110,10 @@ def debt_to_ebitda(balance_sheet : dict, income_statement : dict):
     check_api_limit_reached(balance_sheet)
     check_api_limit_reached(income_statement)
 
-    if balance_sheet["annualReports"][1]["totalLiabilities"] == "None" or income_statement["annualReports"][1]["ebitda"] == "None" or income_statement["annualReports"][1]["ebitda"] == "0":
+    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or income_statement["annualReports"][0]["ebitda"] == "None" or income_statement["annualReports"][0]["ebitda"] == "0":
             return False
     
-    return (int(balance_sheet["annualReports"][1]["totalLiabilities"]) / int(income_statement["annualReports"][1]["ebitda"]))
+    return (int(balance_sheet["annualReports"][0]["totalLiabilities"]) / int(income_statement["annualReports"][0]["ebitda"]))
 
 
 def quick_ratio(balance_sheet : dict):
@@ -122,10 +122,10 @@ def quick_ratio(balance_sheet : dict):
 
     check_api_limit_reached(balance_sheet)
 
-    cash_plus_ce = balance_sheet["annualReports"][1]["cashAndCashEquivalentsAtCarryingValue"]
-    ms = balance_sheet["annualReports"][1]["totalCurrentAssets"]
-    nar = balance_sheet["annualReports"][1]["currentNetReceivables"]
-    current_liabilities = balance_sheet["annualReports"][1]["totalCurrentLiabilities"]
+    cash_plus_ce = balance_sheet["annualReports"][0]["cashAndCashEquivalentsAtCarryingValue"]
+    ms = balance_sheet["annualReports"][0]["totalCurrentAssets"]
+    nar = balance_sheet["annualReports"][0]["currentNetReceivables"]
+    current_liabilities = balance_sheet["annualReports"][0]["totalCurrentLiabilities"]
     
     if cash_plus_ce == "None" or ms == "None" or nar == "None" or current_liabilities == "None" or current_liabilities == "0":
         return False
@@ -139,10 +139,10 @@ def current_ratio(balance_sheet : dict):
 
     check_api_limit_reached(balance_sheet)
     
-    if balance_sheet["annualReports"][1]["totalCurrentAssets"] == "None" or balance_sheet["annualReports"][1]["totalCurrentLiabilities"] == "None" or balance_sheet["annualReports"][1]["totalCurrentLiabilities"] == "0":
+    if balance_sheet["annualReports"][0]["totalCurrentAssets"] == "None" or balance_sheet["annualReports"][0]["totalCurrentLiabilities"] == "None" or balance_sheet["annualReports"][0]["totalCurrentLiabilities"] == "0":
         return False
     
-    return (int(balance_sheet["annualReports"][1]["totalCurrentAssets"]) / int(balance_sheet["annualReports"][1]["totalCurrentLiabilities"]))
+    return (int(balance_sheet["annualReports"][0]["totalCurrentAssets"]) / int(balance_sheet["annualReports"][0]["totalCurrentLiabilities"]))
 
 
 def ten_yr_operating_expenses_growth(income_statement : dict):
@@ -151,13 +151,13 @@ def ten_yr_operating_expenses_growth(income_statement : dict):
 
     check_api_limit_reached(income_statement)
 
-    if len(income_statement["annualReports"]) < 11 :
+    if len(income_statement["annualReports"]) < 10 :
         return False
 
-    if income_statement["annualReports"][1]["operatingExpenses"] == "None" or income_statement["annualReports"][10]["operatingExpenses"] == "None" or income_statement["annualReports"][10]["operatingExpenses"] == "0":
+    if income_statement["annualReports"][0]["operatingExpenses"] == "None" or income_statement["annualReports"][9]["operatingExpenses"] == "None" or income_statement["annualReports"][9]["operatingExpenses"] == "0":
         return False
     
-    return ((int(income_statement["annualReports"][1]["operatingExpenses"]) - int(income_statement["annualReports"][10]["operatingExpenses"]))/(int(income_statement["annualReports"][10]["operatingExpenses"]))) * 100
+    return ((int(income_statement["annualReports"][0]["operatingExpenses"]) - int(income_statement["annualReports"][9]["operatingExpenses"]))/(int(income_statement["annualReports"][9]["operatingExpenses"]))) * 100
 
 
 def ten_yr_assets_growth(balance_sheet : dict):
@@ -169,10 +169,10 @@ def ten_yr_assets_growth(balance_sheet : dict):
     if len(balance_sheet["annualReports"]) < 11 :
         return False
     
-    if balance_sheet["annualReports"][1]["totalAssets"] == "None" or balance_sheet["annualReports"][10]["totalAssets"] == "None" or balance_sheet["annualReports"][10]["totalAssets"] == "0" :
+    if balance_sheet["annualReports"][0]["totalAssets"] == "None" or balance_sheet["annualReports"][10]["totalAssets"] == "None" or balance_sheet["annualReports"][10]["totalAssets"] == "0" :
         return False
     
-    return ((int(balance_sheet["annualReports"][1]["totalAssets"]) - int(balance_sheet["annualReports"][10]["totalAssets"]))/(int(balance_sheet["annualReports"][10]["totalAssets"]))) * 100
+    return ((int(balance_sheet["annualReports"][0]["totalAssets"]) - int(balance_sheet["annualReports"][10]["totalAssets"]))/(int(balance_sheet["annualReports"][10]["totalAssets"]))) * 100
 
 
 def one_yr_liabilities_growth(balance_sheet : dict):
@@ -184,10 +184,10 @@ def one_yr_liabilities_growth(balance_sheet : dict):
     if len(balance_sheet["annualReports"]) < 2 :
         return False
 
-    if balance_sheet["annualReports"][1]["totalLiabilities"] == "None" or balance_sheet["annualReports"][2]["totalLiabilities"] == "None" or balance_sheet["annualReports"][2]["totalLiabilities"] == "0":
+    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][1]["totalLiabilities"] == "None" or balance_sheet["annualReports"][1]["totalLiabilities"] == "0":
         return False
     
-    return ((int(balance_sheet["annualReports"][1]["totalLiabilities"]) - int(balance_sheet["annualReports"][2]["totalLiabilities"]))/(int(balance_sheet["annualReports"][2]["totalLiabilities"]))) * 100
+    return ((int(balance_sheet["annualReports"][0]["totalLiabilities"]) - int(balance_sheet["annualReports"][1]["totalLiabilities"]))/(int(balance_sheet["annualReports"][2]["totalLiabilities"]))) * 100
 
 
 def two_yr_liabilities_growth(balance_sheet : dict):
@@ -199,10 +199,10 @@ def two_yr_liabilities_growth(balance_sheet : dict):
     if len(balance_sheet["annualReports"]) < 3 :
         return False
 
-    if balance_sheet["annualReports"][1]["totalLiabilities"] == "None" or balance_sheet["annualReports"][3]["totalLiabilities"] == "None" or balance_sheet["annualReports"][3]["totalLiabilities"] == "0":
+    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][2]["totalLiabilities"] == "None" or balance_sheet["annualReports"][2]["totalLiabilities"] == "0":
         return False
     
-    return ((int(balance_sheet["annualReports"][1]["totalLiabilities"]) - int(balance_sheet["annualReports"][3]["totalLiabilities"]))/(int(balance_sheet["annualReports"][3]["totalLiabilities"]))) * 100
+    return ((int(balance_sheet["annualReports"][0]["totalLiabilities"]) - int(balance_sheet["annualReports"][2]["totalLiabilities"]))/(int(balance_sheet["annualReports"][3]["totalLiabilities"]))) * 100
 
 
 def five_yr_liabilities_growth(balance_sheet : dict):
@@ -214,10 +214,10 @@ def five_yr_liabilities_growth(balance_sheet : dict):
     if len(balance_sheet["annualReports"]) < 6 :
         return False
 
-    if balance_sheet["annualReports"][1]["totalLiabilities"] == "None" or balance_sheet["annualReports"][6]["totalLiabilities"] == "None" or balance_sheet["annualReports"][6]["totalLiabilities"] == "0":
+    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][5]["totalLiabilities"] == "None" or balance_sheet["annualReports"][5]["totalLiabilities"] == "0":
         return False
     
-    return ((int(balance_sheet["annualReports"][1]["totalLiabilities"]) - int(balance_sheet["annualReports"][6]["totalLiabilities"]))/(int(balance_sheet["annualReports"][6]["totalLiabilities"]))) * 100
+    return ((int(balance_sheet["annualReports"][0]["totalLiabilities"]) - int(balance_sheet["annualReports"][5]["totalLiabilities"]))/(int(balance_sheet["annualReports"][5]["totalLiabilities"]))) * 100
 
 
 def ten_yr_liabilities_growth(balance_sheet : dict):
@@ -229,10 +229,10 @@ def ten_yr_liabilities_growth(balance_sheet : dict):
     if len(balance_sheet["annualReports"]) < 11 :
         return False
 
-    if balance_sheet["annualReports"][1]["totalLiabilities"] == "None" or balance_sheet["annualReports"][10]["totalLiabilities"] == "None" or balance_sheet["annualReports"][10]["totalLiabilities"] == "0":
+    if balance_sheet["annualReports"][0]["totalLiabilities"] == "None" or balance_sheet["annualReports"][10]["totalLiabilities"] == "None" or balance_sheet["annualReports"][10]["totalLiabilities"] == "0":
         return False
     
-    return ((int(balance_sheet["annualReports"][1]["totalLiabilities"]) - int(balance_sheet["annualReports"][10]["totalLiabilities"]))/(int(balance_sheet["annualReports"][10]["totalLiabilities"]))) * 100
+    return ((int(balance_sheet["annualReports"][0]["totalLiabilities"]) - int(balance_sheet["annualReports"][10]["totalLiabilities"]))/(int(balance_sheet["annualReports"][10]["totalLiabilities"]))) * 100
 
 
 def ten_yr_cash_flow_growth(cash_flow_report : dict):
@@ -244,10 +244,10 @@ def ten_yr_cash_flow_growth(cash_flow_report : dict):
     if len(cash_flow_report["annualReports"]) < 11 :
         return False
 
-    if cash_flow_report["annualReports"][1]["operatingCashflow"] == "None" or cash_flow_report["annualReports"][10]["operatingCashflow"] == "None" or cash_flow_report["annualReports"][10]["operatingCashflow"] == "0":
+    if cash_flow_report["annualReports"][0]["operatingCashflow"] == "None" or cash_flow_report["annualReports"][10]["operatingCashflow"] == "None" or cash_flow_report["annualReports"][10]["operatingCashflow"] == "0":
         return False
     
-    return ((int(cash_flow_report["annualReports"][1]["operatingCashflow"]) - int(cash_flow_report["annualReports"][10]["operatingCashflow"]))/(int(cash_flow_report["annualReports"][10]["operatingCashflow"]))) * 100
+    return ((int(cash_flow_report["annualReports"][0]["operatingCashflow"]) - int(cash_flow_report["annualReports"][10]["operatingCashflow"]))/(int(cash_flow_report["annualReports"][10]["operatingCashflow"]))) * 100
 
 
 def one_yr_share_count_growth(balance_sheet : dict):
@@ -259,10 +259,10 @@ def one_yr_share_count_growth(balance_sheet : dict):
     if len(balance_sheet["annualReports"]) < 2 :
         return False
 
-    if balance_sheet["annualReports"][1]["commonStock"] == "None" or balance_sheet["annualReports"][2]["commonStock"] == "None" or balance_sheet["annualReports"][2]["commonStock"] == "0":
+    if balance_sheet["annualReports"][0]["commonStock"] == "None" or balance_sheet["annualReports"][1]["commonStock"] == "None" or balance_sheet["annualReports"][1]["commonStock"] == "0":
         return False
     
-    return ((int(balance_sheet["annualReports"][1]["commonStock"]) - int(balance_sheet["annualReports"][2]["commonStock"]))/(int(balance_sheet["annualReports"][2]["commonStock"]))) * 100
+    return ((int(balance_sheet["annualReports"][0]["commonStock"]) - int(balance_sheet["annualReports"][1]["commonStock"]))/(int(balance_sheet["annualReports"][1]["commonStock"]))) * 100
 
 
 def two_yr_share_count_growth(balance_sheet : dict):
@@ -274,10 +274,10 @@ def two_yr_share_count_growth(balance_sheet : dict):
     if len(balance_sheet["annualReports"]) < 3 :
         return False
 
-    if balance_sheet["annualReports"][1]["commonStock"] == "None" or balance_sheet["annualReports"][3]["commonStock"] == "None" or balance_sheet["annualReports"][3]["commonStock"] == "0":
+    if balance_sheet["annualReports"][0]["commonStock"] == "None" or balance_sheet["annualReports"][2]["commonStock"] == "None" or balance_sheet["annualReports"][2]["commonStock"] == "0":
         return False
     
-    return ((int(balance_sheet["annualReports"][1]["commonStock"]) - int(balance_sheet["annualReports"][3]["commonStock"]))/(int(balance_sheet["annualReports"][3]["commonStock"]))) * 100
+    return ((int(balance_sheet["annualReports"][0]["commonStock"]) - int(balance_sheet["annualReports"][2]["commonStock"]))/(int(balance_sheet["annualReports"][2]["commonStock"]))) * 100
 
 
 def five_yr_share_count_growth(balance_sheet : dict):
@@ -289,10 +289,10 @@ def five_yr_share_count_growth(balance_sheet : dict):
     if len(balance_sheet["annualReports"]) < 6 :
         return False
 
-    if balance_sheet["annualReports"][1]["commonStock"] == "None" or balance_sheet["annualReports"][6]["commonStock"] == "None" or balance_sheet["annualReports"][6]["commonStock"] == "0":
+    if balance_sheet["annualReports"][0]["commonStock"] == "None" or balance_sheet["annualReports"][5]["commonStock"] == "None" or balance_sheet["annualReports"][5]["commonStock"] == "0":
         return False
     
-    return ((int(balance_sheet["annualReports"][1]["commonStock"]) - int(balance_sheet["annualReports"][6]["commonStock"]))/(int(balance_sheet["annualReports"][6]["commonStock"]))) * 100
+    return ((int(balance_sheet["annualReports"][0]["commonStock"]) - int(balance_sheet["annualReports"][5]["commonStock"]))/(int(balance_sheet["annualReports"][5]["commonStock"]))) * 100
 
 
 def ten_yr_share_count_growth(balance_sheet : dict):
@@ -304,7 +304,7 @@ def ten_yr_share_count_growth(balance_sheet : dict):
     if len(balance_sheet["annualReports"]) < 11 :
         return False
 
-    if balance_sheet["annualReports"][1]["commonStock"] == "None" or balance_sheet["annualReports"][10]["commonStock"] == "None" or balance_sheet["annualReports"][10]["commonStock"] == "0":
+    if balance_sheet["annualReports"][0]["commonStock"] == "None" or balance_sheet["annualReports"][10]["commonStock"] == "None" or balance_sheet["annualReports"][10]["commonStock"] == "0":
         return False
     
-    return ((int(balance_sheet["annualReports"][1]["commonStock"]) - int(balance_sheet["annualReports"][10]["commonStock"]))/(int(balance_sheet["annualReports"][10]["commonStock"]))) * 100
+    return ((int(balance_sheet["annualReports"][0]["commonStock"]) - int(balance_sheet["annualReports"][10]["commonStock"]))/(int(balance_sheet["annualReports"][10]["commonStock"]))) * 100
